@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "yjy12lcp"
+  navbar:
+    left:
+      - href: index.qmd
+        text: 首页
+      - href: posts/index.qmd
+        text: 博客
+  page-footer:
+    left: "© 2026 yjy12lcp"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+
