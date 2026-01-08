@@ -12,107 +12,6 @@ listing:
   type: default
 ---
 
-::: {.pipeline-container}
-
-::: {.pipeline-title}
-Development Pipeline
-:::
-
-::: {.pipeline}
-
-::: {.pipeline-stage .stage-1}
-::: {.stage-icon}
-📄
-:::
-::: {.stage-label}
-Paper
-:::
-::: {.stage-desc}
-阅读论文
-:::
-:::
-
-[→]{.pipeline-arrow}
-
-::: {.pipeline-stage .stage-2}
-::: {.stage-icon}
-💡
-:::
-::: {.stage-label}
-Idea
-:::
-::: {.stage-desc}
-提取核心
-:::
-:::
-
-[→]{.pipeline-arrow}
-
-::: {.pipeline-stage .stage-3}
-::: {.stage-icon}
-⚙️
-:::
-::: {.stage-label}
-Code
-:::
-::: {.stage-desc}
-代码实现
-:::
-:::
-
-[→]{.pipeline-arrow}
-
-::: {.pipeline-stage .stage-4}
-::: {.stage-icon}
-🧪
-:::
-::: {.stage-label}
-Test
-:::
-::: {.stage-desc}
-实验验证
-:::
-:::
-
-[→]{.pipeline-arrow}
-
-::: {.pipeline-stage .stage-5}
-::: {.stage-icon}
-🚀
-:::
-::: {.stage-label}
-Deploy
-:::
-::: {.stage-desc}
-部署上线
-:::
-:::
-
-:::
-
-:::
-
-::: {.tech-stack-section}
-
-::: {.tech-stack-title}
-Tech Stack
-:::
-
-::: {.tech-stack}
-
-[🐍 Python]{.tech-item}
-[🔥 PyTorch]{.tech-item}
-[📊 TensorFlow]{.tech-item}
-[🐳 Docker]{.tech-item}
-[⚡ CUDA]{.tech-item}
-[🐧 Linux]{.tech-item}
-[📦 Git]{.tech-item}
-[🤗 HuggingFace]{.tech-item}
-
-:::
-
-:::
-
 ::: {.projects-stats}
 
 ::: {.stat-card}
@@ -139,7 +38,7 @@ Tech Stack
 
 ## 📂 All Projects
 
-按时间排序，点击查看详细实现过程。
+按时间排序，点击查看详细实现过程。每个项目页面包含完整的**开发流程**和**技术栈**说明。
 
 ::: {#projects-listing}
 :::

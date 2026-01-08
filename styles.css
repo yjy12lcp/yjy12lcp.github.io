@@ -981,15 +981,26 @@ input[type="search"]:focus {
   }
 }
 
-/* ========== 社交链接 - 横向紧凑布局 ========== */
+/* ========== 社交链接 - 横向紧凑居中布局 ========== */
 .social-links-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center !important;
+  align-items: center;
+  gap: 0.8rem;
+  margin: var(--space-lg) 0;
+  padding: 0 var(--space-md);
+  text-align: center;
+}
+
+.social-links-horizontal > p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 0.8rem;
-  margin: var(--space-lg) 0;
-  padding: 0 var(--space-md);
+  margin: 0;
+  width: 100%;
 }
 
 .social-btn {
@@ -1517,6 +1528,15 @@ input[type="search"]:focus {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-sm);
+}
+
+.tech-stack > p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin: 0;
+  width: 100%;
 }
 
 .tech-item {
