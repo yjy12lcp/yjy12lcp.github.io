@@ -4,18 +4,16 @@ subtitle: "Building the future, one paper at a time."
 page-layout: full
 ---
 
-```{=html}
-<!-- 浮动装饰元素 -->
-<div class="floating-shapes">
-  <div class="shape-left-1"></div>
-  <div class="shape-left-2"></div>
-  <div class="shape-left-3"></div>
-  <div class="shape-right-1"></div>
-  <div class="shape-right-2"></div>
-  <div class="shape-right-3"></div>
-  <div class="shape-center"></div>
-</div>
-```
+::: {.floating-shapes}
+::: {.shape-left-1}
+:::
+::: {.shape-left-2}
+:::
+::: {.shape-right-1}
+:::
+::: {.shape-right-2}
+:::
+:::
 
 ::: {.lead}
 欢迎来到我的学术空间 —— 在这里探索 **AI 前沿论文** 与 **工程实践**，记录从理论到代码的每一步。
@@ -43,35 +41,16 @@ page-layout: full
 
 :::
 
-```{=html}
-<!-- 社交链接 - 横向紧凑布局 -->
-<div class="social-links-horizontal">
-  <a href="https://github.com/yjy12lcp" target="_blank" class="social-btn github" title="GitHub">
-    <span class="social-icon">🐙</span>
-    <span class="social-text">GitHub</span>
-  </a>
-  <a href="mailto:helloworld12yjy@gmail.com" class="social-btn email" title="Email">
-    <span class="social-icon">📧</span>
-    <span class="social-text">Email</span>
-  </a>
-  <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" class="social-btn scholar" title="Google Scholar">
-    <span class="social-icon">🎓</span>
-    <span class="social-text">Scholar</span>
-  </a>
-  <a href="https://twitter.com/your_twitter" target="_blank" class="social-btn twitter" title="Twitter/X">
-    <span class="social-icon">🐦</span>
-    <span class="social-text">Twitter</span>
-  </a>
-  <a href="https://www.linkedin.com/in/your_linkedin" target="_blank" class="social-btn linkedin" title="LinkedIn">
-    <span class="social-icon">💼</span>
-    <span class="social-text">LinkedIn</span>
-  </a>
-  <a href="https://huggingface.co/your_hf" target="_blank" class="social-btn huggingface" title="Hugging Face">
-    <span class="social-icon">🤗</span>
-    <span class="social-text">HuggingFace</span>
-  </a>
-</div>
-```
+::: {.social-links-horizontal}
+
+[[🐙 GitHub](https://github.com/yjy12lcp)]{.social-btn .github}
+[[📧 Email](mailto:helloworld12yjy@gmail.com)]{.social-btn .email}
+[[🎓 Scholar](https://scholar.google.com/citations?user=YOUR_ID)]{.social-btn .scholar}
+[[🐦 Twitter](https://twitter.com/your_twitter)]{.social-btn .twitter}
+[[💼 LinkedIn](https://www.linkedin.com/in/your_linkedin)]{.social-btn .linkedin}
+[[🤗 HuggingFace](https://huggingface.co/your_hf)]{.social-btn .huggingface}
+
+:::
 
 ---
 
