@@ -22,13 +22,13 @@ page-layout: full
 ::: {.stats-container}
 
 ::: {.stat-item}
-[10+]{.stat-number}
+[<span id="home-paper-count">0</span>]{.stat-number}
 
 [Papers]{.stat-label}
 :::
 
 ::: {.stat-item}
-[5+]{.stat-number}
+[<span id="home-project-count">0</span>]{.stat-number}
 
 [Projects]{.stat-label}
 :::
@@ -89,3 +89,38 @@ page-layout: full
 ::: {.lead style="margin-top: 2rem; font-size: 1rem;"}
 📬 想交流？查看 [关于](about.qmd) 页面
 :::
+
+```{=html}
+<script>
+// 首页统计：通过 fetch 获取论文和项目数量
+document.addEventListener('DOMContentLoaded', async function() {
+  // 获取论文数量
+  try {
+    const papersResponse = await fetch('papers/index.html');
+    const papersHtml = await papersResponse.text();
+    const papersDoc = new DOMParser().parseFromString(papersHtml, 'text/html');
+    const paperItems = papersDoc.querySelectorAll('.quarto-listing-default .list-item, .quarto-post');
+    const paperCountEl = document.getElementById('home-paper-count');
+    if (paperCountEl) {
+      paperCountEl.textContent = paperItems.length > 0 ? paperItems.length : '0';
+    }
+  } catch (e) {
+    console.log('Papers page not found');
+  }
+  
+  // 获取项目数量
+  try {
+    const projectsResponse = await fetch('projects/index.html');
+    const projectsHtml = await projectsResponse.text();
+    const projectsDoc = new DOMParser().parseFromString(projectsHtml, 'text/html');
+    const projectItems = projectsDoc.querySelectorAll('.quarto-listing-default .list-item, .quarto-post');
+    const projectCountEl = document.getElementById('home-project-count');
+    if (projectCountEl) {
+      projectCountEl.textContent = projectItems.length > 0 ? projectItems.length : '0';
+    }
+  } catch (e) {
+    console.log('Projects page not found');
+  }
+});
+</script>
+```

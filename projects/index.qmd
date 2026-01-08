@@ -3,6 +3,7 @@ title: "🛠️ Projects"
 subtitle: "从论文到产品，工程实践全记录"
 page-layout: full
 listing:
+  id: projects-listing
   contents: ../posts/projects
   sort: "date desc"
   categories: true
@@ -116,20 +117,20 @@ Tech Stack
 
 ::: {.stat-card}
 [🔧]{.stat-icon}
-[5+]{.stat-value}
+[<span id="project-count">0</span>]{.stat-value}
 [项目数量]{.stat-desc}
 :::
 
 ::: {.stat-card}
-[⭐]{.stat-icon}
-[100+]{.stat-value}
-[代码提交]{.stat-desc}
+[🏷️]{.stat-icon}
+[<span id="project-category-count">0</span>]{.stat-value}
+[技术领域]{.stat-desc}
 :::
 
 ::: {.stat-card}
-[📈]{.stat-icon}
-[3+]{.stat-value}
-[开源贡献]{.stat-desc}
+[📅]{.stat-icon}
+[<span id="project-latest-date">-</span>]{.stat-value}
+[最近更新]{.stat-desc}
 :::
 
 :::
@@ -139,3 +140,40 @@ Tech Stack
 ## 📂 All Projects
 
 按时间排序，点击查看详细实现过程。
+
+::: {#projects-listing}
+:::
+
+```{=html}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 统计项目数量
+  const listingItems = document.querySelectorAll('#projects-listing .quarto-listing-default .list-item, #projects-listing .quarto-post, #projects-listing .g-col-1');
+  const projectCount = listingItems.length;
+  
+  const projectCountEl = document.getElementById('project-count');
+  if (projectCountEl) {
+    projectCountEl.textContent = projectCount > 0 ? projectCount : '0';
+  }
+  
+  // 统计分类数量
+  const categories = new Set();
+  document.querySelectorAll('#projects-listing .listing-category, #projects-listing .quarto-category').forEach(cat => {
+    categories.add(cat.textContent.trim());
+  });
+  const categoryCountEl = document.getElementById('project-category-count');
+  if (categoryCountEl) {
+    categoryCountEl.textContent = categories.size > 0 ? categories.size : '0';
+  }
+  
+  // 获取最近更新日期
+  const dates = document.querySelectorAll('#projects-listing .listing-date');
+  if (dates.length > 0) {
+    const latestDateEl = document.getElementById('project-latest-date');
+    if (latestDateEl) {
+      latestDateEl.textContent = dates[0].textContent.trim().slice(0, 7) || '-';
+    }
+  }
+});
+</script>
+```
