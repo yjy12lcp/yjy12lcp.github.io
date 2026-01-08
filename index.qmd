@@ -1,11 +1,60 @@
 ---
 title: "YJY's Lab"
 subtitle: "Building the future, one paper at a time."
+page-layout: full
 ---
+
+<!-- 浮动装饰元素 -->
+<div class="floating-shapes">
+  <div class="shape-left-1"></div>
+  <div class="shape-left-2"></div>
+  <div class="shape-left-3"></div>
+  <div class="shape-right-1"></div>
+  <div class="shape-right-2"></div>
+  <div class="shape-right-3"></div>
+  <div class="shape-center"></div>
+</div>
 
 ::: {.lead}
 欢迎来到我的学术空间 —— 在这里探索 **AI 前沿论文** 与 **工程实践**，记录从理论到代码的每一步。
 :::
+
+<!-- 统计数字 -->
+::: {.stats-container}
+
+::: {.stat-item}
+[10+]{.stat-number}
+
+[Papers]{.stat-label}
+:::
+
+::: {.stat-item}
+[5+]{.stat-number}
+
+[Projects]{.stat-label}
+:::
+
+::: {.stat-item}
+[∞]{.stat-number}
+
+[Curiosity]{.stat-label}
+:::
+
+:::
+
+<!-- 技能标签 -->
+::: {.tags-container}
+
+[🤖 Deep Learning]{.skill-tag}
+[📊 Computer Vision]{.skill-tag}
+[🔬 NLP]{.skill-tag}
+[🚀 MLOps]{.skill-tag}
+[🐍 Python]{.skill-tag}
+[⚡ PyTorch]{.skill-tag}
+
+:::
+
+---
 
 ## Explore
 
@@ -15,12 +64,22 @@ subtitle: "Building the future, one paper at a time."
 ### 📖 [Papers](papers/index.qmd)
 
 深度阅读经典与前沿论文，按领域分类，建立知识图谱。
+
+- Transformer 架构演进
+- 视觉大模型
+- 多模态学习
+- ...更多主题
 :::
 
 ::: {.column}
 ### 🛠️ [Projects](projects/index.qmd)
 
 算法复现、模型训练、工程踩坑，从 Paper 到 Production。
+
+- 模型训练与调优
+- 部署与优化
+- 开源项目贡献
+- ...更多实践
 :::
 
 ::::
@@ -29,6 +88,6 @@ subtitle: "Building the future, one paper at a time."
 
 > *"The best way to learn is to teach."*
 
-📬 想交流？查看 [关于](about.qmd) 页面。
-
-
+::: {.lead style="margin-top: 2rem; font-size: 1rem;"}
+📬 想交流？查看 [关于](about.qmd) 页面 | 🌟 [GitHub](https://github.com/yjy12lcp)
+:::
