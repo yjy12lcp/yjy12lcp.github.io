@@ -900,28 +900,11 @@ input[type="search"] {
   border: 2px solid var(--border-color);
   border-radius: var(--radius-xl);
   padding: 1rem 1.5rem;
-  padding-left: 3rem;
   color: var(--text-primary);
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.quarto-listing-filter {
-  position: relative;
-}
-
-.quarto-listing-filter::before {
-  content: '🔍';
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1rem;
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 1;
 }
 
 .quarto-listing-filter input:focus,
@@ -943,6 +926,116 @@ input[type="search"]:focus {
 ::placeholder {
   color: var(--text-muted);
   font-style: italic;
+}
+
+/* ========== 导航栏搜索按钮 & 搜索框 ========== */
+.aa-DetachedSearchButton,
+#quarto-search {
+  background: transparent !important;
+  border: none !important;
+}
+
+.aa-DetachedSearchButton {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.aa-DetachedSearchButton:hover {
+  border-color: var(--accent-yellow) !important;
+  box-shadow: 0 0 15px rgba(255, 210, 30, 0.2) !important;
+}
+
+.aa-DetachedSearchButtonIcon {
+  color: var(--text-secondary) !important;
+}
+
+.aa-DetachedSearchButtonPlaceholder {
+  color: var(--text-muted) !important;
+}
+
+/* 搜索弹出框 */
+.aa-DetachedOverlay {
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.aa-DetachedContainer {
+  background: var(--bg-card) !important;
+  border: 2px solid var(--border-color) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5) !important;
+  max-width: 600px !important;
+  margin: 10vh auto !important;
+}
+
+.aa-Form {
+  background: var(--bg-secondary) !important;
+  border: 2px solid var(--border-color) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 0.5rem !important;
+}
+
+.aa-Form:focus-within {
+  border-color: var(--accent-yellow) !important;
+  box-shadow: 0 0 0 4px rgba(255, 210, 30, 0.15) !important;
+}
+
+.aa-Input {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  font-size: 1.1rem !important;
+}
+
+.aa-Input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.aa-Panel {
+  background: var(--bg-card) !important;
+  border: none !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+.aa-Item {
+  background: transparent !important;
+  padding: 1rem !important;
+  border-radius: var(--radius-md) !important;
+  margin: 0.25rem 0.5rem !important;
+}
+
+.aa-Item[aria-selected="true"],
+.aa-Item:hover {
+  background: var(--bg-secondary) !important;
+}
+
+.aa-ItemContent {
+  color: var(--text-primary) !important;
+}
+
+.aa-ItemContentTitle {
+  color: var(--text-primary) !important;
+}
+
+.aa-ItemContentDescription {
+  color: var(--text-secondary) !important;
+}
+
+/* 搜索图标颜色 */
+.aa-SubmitIcon,
+.aa-LoadingIcon {
+  color: var(--accent-yellow) !important;
+}
+
+/* 清除按钮 */
+.aa-ClearButton {
+  color: var(--text-muted) !important;
+}
+
+.aa-ClearButton:hover {
+  color: var(--text-primary) !important;
 }
 
 /* ========== Explore 卡片（首页） ========== */
@@ -1500,9 +1593,7 @@ input[type="search"]:focus {
 }
 
 .network-hint {
-  margin-top: var(--space-md);
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  display: none;
 }
 
 /* 旧版网络样式（保留兼容） */
