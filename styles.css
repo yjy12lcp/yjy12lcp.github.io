@@ -888,30 +888,196 @@ tr:hover td {
   background: var(--bg-card-hover);
 }
 
-/* ---------- 搜索与过滤 UI ---------- */
+/* ---------- 搜索与过滤 UI（美化版） ---------- */
+.quarto-listing-filter {
+  margin-bottom: var(--space-lg);
+}
+
 .quarto-listing-filter input,
 input[type="text"],
 input[type="search"] {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+  border: 2px solid var(--border-color);
   border-radius: var(--radius-xl);
-  padding: 0.8rem 1.2rem;
+  padding: 1rem 1.5rem;
+  padding-left: 3rem;
   color: var(--text-primary);
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quarto-listing-filter {
+  position: relative;
+}
+
+.quarto-listing-filter::before {
+  content: '🔍';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .quarto-listing-filter input:focus,
 input[type="text"]:focus,
 input[type="search"]:focus {
   border-color: var(--accent-yellow);
-  box-shadow: 0 0 0 3px rgba(255, 210, 30, 0.15), var(--shadow-glow);
+  box-shadow: 
+    0 0 0 4px rgba(255, 210, 30, 0.15),
+    0 8px 25px rgba(255, 210, 30, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
   outline: none;
+  background: var(--bg-card);
+}
+
+.quarto-listing-filter input:hover {
+  border-color: var(--border-hover);
 }
 
 ::placeholder {
   color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ========== Explore 卡片（首页） ========== */
+.explore-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-lg);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.explore-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.explore-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.explore-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-yellow);
+  box-shadow: 0 20px 40px rgba(255, 210, 30, 0.15);
+}
+
+.explore-card:hover::before {
+  transform: scaleX(1);
+}
+
+.explore-card .card-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.explore-card .card-content {
+  flex: 1;
+}
+
+.explore-card .card-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.explore-card .card-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.8rem 0;
+  line-height: 1.5;
+}
+
+.explore-card .card-tags {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.explore-card .card-tags li {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  border: 1px solid var(--border-color);
+}
+
+.explore-card .card-arrow {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.explore-card:hover .card-arrow {
+  color: var(--accent-yellow);
+  transform: translateX(5px);
+}
+
+.papers-card:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 20px 40px rgba(96, 165, 250, 0.15);
+}
+
+.projects-card:hover {
+  border-color: var(--accent-purple);
+  box-shadow: 0 20px 40px rgba(192, 132, 252, 0.15);
+}
+
+@media (max-width: 768px) {
+  .explore-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .explore-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .explore-card .card-tags {
+    justify-content: center;
+  }
+  
+  .explore-card .card-arrow {
+    display: none;
+  }
 }
 
 /* ---------- 滚动条 ---------- */
@@ -1027,6 +1193,19 @@ input[type="search"]:focus {
   transform: translateY(-3px) scale(1.05);
   border-color: var(--accent-yellow);
   box-shadow: var(--shadow-glow);
+}
+
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: all 0.3s ease;
+}
+
+.social-btn span {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
 }
 
 .social-btn .social-icon {
@@ -1179,12 +1358,18 @@ input[type="search"]:focus {
 }
 
 .network-title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.network-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
   margin-bottom: var(--space-md);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 .paper-network-3d {

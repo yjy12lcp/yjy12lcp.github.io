@@ -3,7 +3,7 @@ project:
   output-dir: _site
 
 website:
-  title: "yjy12lcp"
+  title: "Helloworld"
   description: "论文阅读与项目实现笔记"
   navbar:
     left:
@@ -18,13 +18,12 @@ website:
       - href: about.qmd
         text: 关于
   page-footer:
-    left: "© 2026 yjy12lcp"
+    left: "© 2026 Helloworld"
 
 format:
   html:
     theme: darkly
-    toc: true
-    toc-location: right
+    toc: false
     smooth-scroll: true
     link-external-newwindow: true
     css: styles.css

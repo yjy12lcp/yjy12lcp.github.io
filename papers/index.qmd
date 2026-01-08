@@ -14,9 +14,9 @@ listing:
 
 ```{=html}
 <div class="paper-network-container">
-  <div class="network-title">Knowledge Graph</div>
+  <div class="network-title">知识图谱</div>
+  <div class="network-subtitle">Knowledge Graph</div>
   <div id="paper-network-3d" class="paper-network-3d"></div>
-  <div class="network-hint">🖱️ 移动鼠标旋转视角 | 悬停气泡查看论文 | 点击进入详情</div>
 </div>
 
 <div class="papers-stats">
