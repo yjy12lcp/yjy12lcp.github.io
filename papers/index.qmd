@@ -4,7 +4,7 @@ subtitle: "探索前沿，建立知识图谱"
 page-layout: full
 listing:
   id: papers-listing
-  contents: posts/papers
+  contents: "../posts/papers/**/index.qmd"
   sort: "date desc"
   categories: true
   filter-ui: true
