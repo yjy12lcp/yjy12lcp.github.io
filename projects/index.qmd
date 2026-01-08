@@ -16,13 +16,13 @@ listing:
 
 ::: {.stat-card}
 [🔧]{.stat-icon}
-[<span id="project-count">0</span>]{.stat-value}
+[<span id="project-count">-</span>]{.stat-value}
 [项目数量]{.stat-desc}
 :::
 
 ::: {.stat-card}
 [🏷️]{.stat-icon}
-[<span id="project-category-count">0</span>]{.stat-value}
+[<span id="project-category-count">-</span>]{.stat-value}
 [技术领域]{.stat-desc}
 :::
 
@@ -45,74 +45,61 @@ listing:
 
 ```{=html}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  setTimeout(function() {
-    const listingContainer = document.getElementById('projects-listing');
-    if (!listingContainer) return;
+(function() {
+  function init() {
+    var projects = [];
     
-    // 查找文章项
-    const listingItems = listingContainer.querySelectorAll('.quarto-post, .list-item, [class*="listing-item"], .card, .g-col-1, article, .quarto-grid-item');
-    
-    let projects = [];
-    
-    if (listingItems.length > 0) {
-      listingItems.forEach((item) => {
-        const titleEl = item.querySelector('a.title, .listing-title a, .card-title a, h3 a, h2 a, .title a, a[href*="posts"]');
-        const categoryEls = item.querySelectorAll('.listing-category, .quarto-category, .category, [class*="category"]');
-        const dateEl = item.querySelector('.listing-date, .date, [class*="date"], time');
-        
-        if (titleEl) {
-          const categories = [];
-          categoryEls.forEach(c => categories.push(c.textContent.trim()));
-          
-          projects.push({
-            title: titleEl.textContent.trim(),
-            url: titleEl.href,
-            category: categories.length > 0 ? categories[0] : '未分类',
-            date: dateEl ? dateEl.textContent.trim() : ''
-          });
+    // 查找 listing 中的项目
+    var listingEl = document.getElementById('projects-listing');
+    if (listingEl) {
+      var links = listingEl.querySelectorAll('a');
+      links.forEach(function(link) {
+        var href = link.getAttribute('href');
+        var text = link.textContent.trim();
+        if (href && text && href.indexOf('posts/projects') !== -1 && text.length > 2) {
+          var exists = projects.some(function(p) { return p.url === link.href; });
+          if (!exists) {
+            projects.push({ title: text, url: link.href });
+          }
         }
       });
     }
     
     // 备用方案
     if (projects.length === 0) {
-      const allLinks = listingContainer.querySelectorAll('a[href*="posts/projects"]');
-      allLinks.forEach(link => {
-        if (link.textContent.trim() && !link.classList.contains('listing-category')) {
-          projects.push({
-            title: link.textContent.trim(),
-            url: link.href,
-            category: '项目',
-            date: ''
-          });
+      var allLinks = document.querySelectorAll('a[href*="posts/projects"]');
+      allLinks.forEach(function(link) {
+        var text = link.textContent.trim();
+        if (text && text.length > 3) {
+          var exists = projects.some(function(p) { return p.url === link.href; });
+          if (!exists) {
+            projects.push({ title: text, url: link.href });
+          }
         }
       });
     }
     
+    console.log('Found projects:', projects);
+    
     // 更新统计
-    const projectCountEl = document.getElementById('project-count');
+    var projectCountEl = document.getElementById('project-count');
     if (projectCountEl) {
-      projectCountEl.textContent = projects.length;
+      projectCountEl.textContent = projects.length > 0 ? projects.length : '0';
     }
     
-    const categories = new Set();
-    projects.forEach(p => {
-      if (p.category) categories.add(p.category);
-    });
-    const categoryCountEl = document.getElementById('project-category-count');
+    var categoryCountEl = document.getElementById('project-category-count');
     if (categoryCountEl) {
-      categoryCountEl.textContent = categories.size;
+      categoryCountEl.textContent = projects.length > 0 ? '1' : '0';
     }
-    
-    if (projects.length > 0 && projects[0].date) {
-      const latestDateEl = document.getElementById('project-latest-date');
-      if (latestDateEl) {
-        latestDateEl.textContent = projects[0].date.slice(0, 7) || '-';
-      }
-    }
-    
-  }, 500);
-});
+  }
+  
+  if (document.readyState === 'complete') {
+    setTimeout(init, 300);
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(init, 300);
+    });
+  }
+})();
 </script>
 ```
