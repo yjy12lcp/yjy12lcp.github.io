@@ -1,41 +1,433 @@
-:root{
-  --content-max: 860px;
+/* ============================================
+   温暖学术风 - Warm Academic Style
+   ============================================ */
+
+/* ---------- 导入 Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------- 色彩变量 ---------- */
+:root {
+  /* 温暖色系 */
+  --warm-bg: #faf8f5;
+  --warm-bg-alt: #f5f0e8;
+  --warm-card: #ffffff;
+  --warm-border: #e8e0d5;
+  --warm-text: #3d3529;
+  --warm-text-muted: #6b5f4f;
+  --warm-accent: #8b6914;
+  --warm-accent-hover: #a67c00;
+  --warm-link: #6b4423;
+  --warm-link-hover: #8b5a2b;
+  --warm-shadow: rgba(139, 105, 20, 0.08);
+  --warm-shadow-hover: rgba(139, 105, 20, 0.15);
+  
+  /* 间距 */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  
+  /* 圆角 */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
 }
 
-/* Keep an academic, airy layout */
-.page-columns{
-  max-width: var(--content-max);
+/* ---------- 全局样式 ---------- */
+body {
+  background: linear-gradient(135deg, var(--warm-bg) 0%, var(--warm-bg-alt) 100%);
+  background-attachment: fixed;
+  color: var(--warm-text);
+  line-height: 1.85;
+  letter-spacing: 0.01em;
 }
 
-/* Typography */
-body{
-  line-height: 1.75;
-  letter-spacing: .01em;
+/* ---------- 导航栏 ---------- */
+.navbar {
+  background: linear-gradient(180deg, var(--warm-card) 0%, rgba(250, 248, 245, 0.95) 100%) !important;
+  border-bottom: 1px solid var(--warm-border);
+  box-shadow: 0 2px 20px var(--warm-shadow);
+  backdrop-filter: blur(10px);
 }
 
-h1, h2, h3{
-  letter-spacing: .005em;
+.navbar-brand {
+  font-family: 'Crimson Text', 'Noto Serif SC', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--warm-accent) !important;
+  letter-spacing: 0.02em;
 }
 
-/* Subtle link styling */
-a{
-  text-decoration-thickness: from-font;
-  text-underline-offset: .18em;
+.nav-link {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 500;
+  color: var(--warm-text) !important;
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
 }
 
-/* Listing cards feel */
-.quarto-listing .listing-item{
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 12px;
+.nav-link:hover {
+  color: var(--warm-accent) !important;
+  transform: translateY(-1px);
 }
 
-/* Dark mode tweak */
-@media (prefers-color-scheme: dark){
-  .quarto-listing .listing-item{
-    border-color: rgba(255,255,255,.10);
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--warm-accent);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* ---------- 主内容区 ---------- */
+main.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* ---------- 标题样式 ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Crimson Text', 'Noto Serif SC', Georgia, serif;
+  color: var(--warm-text);
+  font-weight: 600;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2.4rem;
+  border-bottom: 3px solid var(--warm-accent);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--warm-link);
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+/* ---------- 链接样式 ---------- */
+a {
+  color: var(--warm-link);
+  text-decoration: none;
+  transition: color 0.2s ease, border-bottom 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: var(--warm-link-hover);
+  border-bottom: 1px solid var(--warm-link-hover);
+}
+
+/* ---------- 段落与文字 ---------- */
+p {
+  margin-bottom: var(--space-sm);
+  text-align: justify;
+}
+
+blockquote {
+  border-left: 4px solid var(--warm-accent);
+  background: var(--warm-bg-alt);
+  padding: var(--space-sm) var(--space-md);
+  margin: var(--space-md) 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic;
+  color: var(--warm-text-muted);
+}
+
+/* ---------- 代码块 ---------- */
+code {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--warm-bg-alt);
+  padding: 0.15em 0.4em;
+  border-radius: var(--radius-sm);
+  color: var(--warm-link);
+}
+
+pre {
+  background: #2d2a24 !important;
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  overflow-x: auto;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+  border: 1px solid var(--warm-border);
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  color: #f5f0e8;
+}
+
+/* ---------- 文章卡片（Listing） ---------- */
+.quarto-listing {
+  margin-top: var(--space-md);
+}
+
+.quarto-listing-default .list-item,
+.quarto-listing .listing-item {
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 15px var(--warm-shadow);
+}
+
+.quarto-listing-default .list-item:hover,
+.quarto-listing .listing-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px var(--warm-shadow-hover);
+  border-color: var(--warm-accent);
+}
+
+.listing-title {
+  font-family: 'Crimson Text', 'Noto Serif SC', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--warm-text);
+  margin-bottom: var(--space-xs);
+}
+
+.listing-title a {
+  border-bottom: none;
+}
+
+.listing-title a:hover {
+  color: var(--warm-accent);
+  border-bottom: none;
+}
+
+.listing-date {
+  color: var(--warm-text-muted);
+  font-size: 0.9rem;
+}
+
+.listing-description {
+  color: var(--warm-text-muted);
+  line-height: 1.7;
+  margin-top: var(--space-xs);
+}
+
+/* ---------- 分类标签 ---------- */
+.listing-category,
+.quarto-category {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--warm-bg-alt) 0%, var(--warm-border) 100%);
+  color: var(--warm-text-muted);
+  padding: 0.25em 0.75em;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-right: var(--space-xs);
+  margin-top: var(--space-xs);
+  transition: all 0.2s ease;
+  border: 1px solid var(--warm-border);
+}
+
+.listing-category:hover,
+.quarto-category:hover {
+  background: var(--warm-accent);
+  color: white;
+  border-color: var(--warm-accent);
+  transform: scale(1.05);
+}
+
+/* ---------- 目录（TOC） ---------- */
+#TOC {
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: 0 4px 15px var(--warm-shadow);
+}
+
+#TOC a {
+  color: var(--warm-text-muted);
+  font-size: 0.9rem;
+  border-bottom: none;
+}
+
+#TOC a:hover {
+  color: var(--warm-accent);
+}
+
+#TOC .active {
+  color: var(--warm-accent);
+  font-weight: 600;
+  border-left: 3px solid var(--warm-accent);
+  padding-left: var(--space-xs);
+  margin-left: -var(--space-xs);
+}
+
+/* ---------- 页脚 ---------- */
+.page-footer {
+  background: var(--warm-card);
+  border-top: 1px solid var(--warm-border);
+  color: var(--warm-text-muted);
+  padding: var(--space-md) 0;
+  margin-top: var(--space-xl);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ---------- 首页特殊样式 ---------- */
+.title-block {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  margin-bottom: var(--space-lg);
+  background: linear-gradient(135deg, var(--warm-bg) 0%, var(--warm-bg-alt) 50%, var(--warm-bg) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--warm-border);
+}
+
+.title {
+  font-size: 2.8rem;
+  background: linear-gradient(135deg, var(--warm-text) 0%, var(--warm-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: var(--warm-text-muted);
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-top: var(--space-sm);
+}
+
+/* ---------- 图片样式 ---------- */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 20px var(--warm-shadow);
+  margin: var(--space-md) 0;
+}
+
+figure {
+  text-align: center;
+}
+
+figcaption {
+  color: var(--warm-text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: var(--space-xs);
+}
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  background: var(--warm-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--warm-shadow);
+}
+
+th {
+  background: var(--warm-bg-alt);
+  color: var(--warm-text);
+  font-weight: 600;
+  padding: var(--space-sm);
+  text-align: left;
+  border-bottom: 2px solid var(--warm-accent);
+}
+
+td {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--warm-border);
+}
+
+tr:hover {
+  background: var(--warm-bg);
+}
+
+/* ---------- 搜索与过滤 UI ---------- */
+.quarto-listing-filter input {
+  background: var(--warm-card);
+  border: 1px solid var(--warm-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  color: var(--warm-text);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quarto-listing-filter input:focus {
+  border-color: var(--warm-accent);
+  box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.1);
+  outline: none;
+}
+
+/* ---------- 深色模式覆盖 ---------- */
+[data-bs-theme="dark"] {
+  --warm-bg: #1a1814;
+  --warm-bg-alt: #252118;
+  --warm-card: #2d2a24;
+  --warm-border: #3d3529;
+  --warm-text: #f5f0e8;
+  --warm-text-muted: #a89f8f;
+  --warm-accent: #d4a84b;
+  --warm-link: #c9a86c;
+  --warm-link-hover: #e0c080;
+  --warm-shadow: rgba(0, 0, 0, 0.3);
+  --warm-shadow-hover: rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- 响应式调整 ---------- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  main.content {
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  .quarto-listing-default .list-item,
+  .quarto-listing .listing-item {
+    padding: var(--space-sm);
   }
 }
 
-
+/* ---------- 打印样式 ---------- */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .navbar, .page-footer, #TOC {
+    display: none;
+  }
+  
+  a {
+    color: var(--warm-text);
+    border-bottom: none;
+  }
+}

@@ -23,12 +23,14 @@ website:
 format:
   html:
     theme:
-      light: cosmo
+      light: sandstone
       dark: darkly
     toc: true
     toc-location: right
     smooth-scroll: true
     link-external-newwindow: true
     css: styles.css
+    mainfont: "Crimson Text, Noto Serif SC, Georgia, serif"
+    monofont: "JetBrains Mono, Consolas, monospace"
 
 
