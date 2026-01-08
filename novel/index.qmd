@@ -1,0 +1,114 @@
+---
+title: "📖 小说"
+subtitle: "创作天地 | Fiction World"
+page-layout: full
+listing:
+  - id: worldview-listing
+    contents: "../posts/novel/worldview/**/index.qmd"
+    sort: "date desc"
+    type: default
+    page-size: 5
+  - id: characters-listing
+    contents: "../posts/novel/characters/**/index.qmd"
+    sort: "date desc"
+    type: default
+    page-size: 5
+  - id: keyplots-listing
+    contents: "../posts/novel/keyplots/**/index.qmd"
+    sort: "date desc"
+    type: default
+    page-size: 5
+  - id: chapters-listing
+    contents: "../posts/novel/chapters/**/index.qmd"
+    sort: "date desc"
+    type: default
+    page-size: 10
+---
+
+```{=html}
+<div class="novel-hero">
+  <div class="novel-stats">
+    <div class="novel-stat">
+      <span class="stat-icon">🌍</span>
+      <span class="stat-value" id="worldview-count">0</span>
+      <span class="stat-label">世界观</span>
+    </div>
+    <div class="novel-stat">
+      <span class="stat-icon">👤</span>
+      <span class="stat-value" id="characters-count">0</span>
+      <span class="stat-label">人物志</span>
+    </div>
+    <div class="novel-stat">
+      <span class="stat-icon">⚡</span>
+      <span class="stat-value" id="keyplots-count">0</span>
+      <span class="stat-label">关键剧情</span>
+    </div>
+    <div class="novel-stat">
+      <span class="stat-icon">📜</span>
+      <span class="stat-value" id="chapters-count">0</span>
+      <span class="stat-label">小说正文</span>
+    </div>
+  </div>
+</div>
+```
+
+---
+
+## 🌍 世界观 {.novel-section-title}
+
+构建故事发生的宏大背景与设定
+
+::: {#worldview-listing}
+:::
+
+---
+
+## 👤 人物志 {.novel-section-title}
+
+记录每一个角色的故事与成长
+
+::: {#characters-listing}
+:::
+
+---
+
+## ⚡ 关键剧情 {.novel-section-title}
+
+那些改变命运走向的重要时刻
+
+::: {#keyplots-listing}
+:::
+
+---
+
+## 📜 小说正文 {.novel-section-title}
+
+故事的主线章节
+
+::: {#chapters-listing}
+:::
+
+```{=html}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    // 统计各分类数量
+    var worldviewItems = document.querySelectorAll('#worldview-listing .quarto-post, #worldview-listing .list-item');
+    var charactersItems = document.querySelectorAll('#characters-listing .quarto-post, #characters-listing .list-item');
+    var keyplotsItems = document.querySelectorAll('#keyplots-listing .quarto-post, #keyplots-listing .list-item');
+    var chaptersItems = document.querySelectorAll('#chapters-listing .quarto-post, #chapters-listing .list-item');
+    
+    var el1 = document.getElementById('worldview-count');
+    var el2 = document.getElementById('characters-count');
+    var el3 = document.getElementById('keyplots-count');
+    var el4 = document.getElementById('chapters-count');
+    
+    if (el1) el1.textContent = worldviewItems.length;
+    if (el2) el2.textContent = charactersItems.length;
+    if (el3) el3.textContent = keyplotsItems.length;
+    if (el4) el4.textContent = chaptersItems.length;
+  }, 500);
+});
+</script>
+```
+

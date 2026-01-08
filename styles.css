@@ -1897,6 +1897,168 @@ input[type="search"]:focus {
 }
 
 /* ---------- 打印样式 ---------- */
+/* ========== 个人简介页面 ========== */
+.about-hero {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  margin-bottom: var(--space-lg);
+}
+
+.about-hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.about-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  transition: all 0.3s ease;
+}
+
+.about-section:hover {
+  border-color: var(--accent-yellow);
+  transform: translateY(-2px);
+}
+
+.about-section h3 {
+  color: var(--accent-yellow);
+  margin-bottom: var(--space-md);
+  font-size: 1.3rem;
+}
+
+.about-section code {
+  background: var(--bg-secondary);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  margin: 0.2rem;
+  display: inline-block;
+  font-size: 0.9rem;
+}
+
+/* ========== 小说页面 ========== */
+.novel-hero {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.novel-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.novel-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--space-md);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  min-width: 100px;
+  transition: all 0.3s ease;
+}
+
+.novel-stat:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-purple);
+  box-shadow: 0 10px 30px rgba(192, 132, 252, 0.2);
+}
+
+.novel-stat .stat-icon {
+  font-size: 2rem;
+}
+
+.novel-stat .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-purple);
+}
+
+.novel-stat .stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.novel-section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--space-md);
+}
+
+.novel-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+  border-radius: 2px;
+}
+
+/* 世界观 - 蓝色主题 */
+#worldview-listing .quarto-post,
+#worldview-listing .list-item {
+  border-left: 4px solid var(--accent-blue) !important;
+}
+
+/* 人物志 - 绿色主题 */
+#characters-listing .quarto-post,
+#characters-listing .list-item {
+  border-left: 4px solid var(--accent-green) !important;
+}
+
+/* 关键剧情 - 橙色主题 */
+#keyplots-listing .quarto-post,
+#keyplots-listing .list-item {
+  border-left: 4px solid var(--accent-orange) !important;
+}
+
+/* 小说正文 - 紫色主题 */
+#chapters-listing .quarto-post,
+#chapters-listing .list-item {
+  border-left: 4px solid var(--accent-purple) !important;
+}
+
+@media (max-width: 768px) {
+  .novel-stats {
+    gap: var(--space-sm);
+  }
+  
+  .novel-stat {
+    min-width: 80px;
+    padding: var(--space-sm);
+  }
+  
+  .novel-stat .stat-icon {
+    font-size: 1.5rem;
+  }
+  
+  .novel-stat .stat-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* ========== 打印样式 ========== */
 @media print {
   body {
     background: white;

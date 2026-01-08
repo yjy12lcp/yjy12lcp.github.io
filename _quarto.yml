@@ -13,10 +13,12 @@ website:
         text: 论文阅读
       - href: projects/index.qmd
         text: 项目实现
+      - href: novel/index.qmd
+        text: 小说
       - href: posts/index.qmd
         text: 全部文章
       - href: about.qmd
-        text: 关于
+        text: 个人简介
   page-footer:
     left: "© 2026 Helloworld"
 

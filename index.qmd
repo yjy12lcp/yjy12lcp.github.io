@@ -112,7 +112,7 @@ toc: false
 > *"The best way to learn is to teach."*
 
 ::: {.lead style="margin-top: 2rem; font-size: 1rem;"}
-📄 [查看个人简历](about.qmd)
+📄 [查看个人简介](about.qmd) · 📖 [小说创作](novel/index.qmd)
 :::
 
 ```{=html}

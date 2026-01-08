@@ -1,11 +1,47 @@
 ---
-title: "关于"
+title: "个人简介"
+subtitle: "About Me"
+page-layout: full
+toc: false
 ---
 
-这里可以放：
+::: {.about-hero}
+## 👋 你好，我是 YJY
 
-- 研究方向 / 兴趣
-- 简短经历
-- 联系方式
+一名热爱 AI 和创作的研究者/开发者
+:::
+
+::: {.about-section}
+### 🎯 研究方向
+
+- 大语言模型 (LLM)
+- 计算机视觉
+- 多模态学习
+:::
+
+::: {.about-section}
+### 📚 教育背景
+
+- 🎓 **XX大学** - XX专业（20XX - 20XX）
+:::
+
+::: {.about-section}
+### 💼 工作经历
+
+- 🏢 **XX公司** - XX职位（20XX - 至今）
+:::
+
+::: {.about-section}
+### 🛠️ 技术栈
+
+`Python` `PyTorch` `Transformers` `CUDA` `Docker` `Git`
+:::
+
+::: {.about-section}
+### 📬 联系方式
+
+- 📧 Email: [helloworld12yjy@gmail.com](mailto:helloworld12yjy@gmail.com)
+- 🐙 GitHub: [github.com/yjy12lcp](https://github.com/yjy12lcp)
+:::
 
 
