@@ -981,7 +981,87 @@ input[type="search"]:focus {
   }
 }
 
-/* ========== 社交链接 ========== */
+/* ========== 社交链接 - 横向紧凑布局 ========== */
+.social-links-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin: var(--space-lg) 0;
+  padding: 0 var(--space-md);
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.4s ease backwards;
+}
+
+.social-btn:nth-child(1) { animation-delay: 0.05s; }
+.social-btn:nth-child(2) { animation-delay: 0.1s; }
+.social-btn:nth-child(3) { animation-delay: 0.15s; }
+.social-btn:nth-child(4) { animation-delay: 0.2s; }
+.social-btn:nth-child(5) { animation-delay: 0.25s; }
+.social-btn:nth-child(6) { animation-delay: 0.3s; }
+
+.social-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: var(--accent-yellow);
+  box-shadow: var(--shadow-glow);
+}
+
+.social-btn .social-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.social-btn .social-text {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+/* 各平台特色颜色 - 横向按钮 */
+.social-btn.github:hover { 
+  border-color: #6e5494; 
+  box-shadow: 0 0 25px rgba(110, 84, 148, 0.4);
+  background: linear-gradient(135deg, rgba(110, 84, 148, 0.1), transparent);
+}
+.social-btn.email:hover { 
+  border-color: #ea4335; 
+  box-shadow: 0 0 25px rgba(234, 67, 53, 0.4);
+  background: linear-gradient(135deg, rgba(234, 67, 53, 0.1), transparent);
+}
+.social-btn.scholar:hover { 
+  border-color: #4285f4; 
+  box-shadow: 0 0 25px rgba(66, 133, 244, 0.4);
+  background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), transparent);
+}
+.social-btn.twitter:hover { 
+  border-color: #1da1f2; 
+  box-shadow: 0 0 25px rgba(29, 161, 242, 0.4);
+  background: linear-gradient(135deg, rgba(29, 161, 242, 0.1), transparent);
+}
+.social-btn.linkedin:hover { 
+  border-color: #0077b5; 
+  box-shadow: 0 0 25px rgba(0, 119, 181, 0.4);
+  background: linear-gradient(135deg, rgba(0, 119, 181, 0.1), transparent);
+}
+.social-btn.huggingface:hover { 
+  border-color: #ff9d00; 
+  box-shadow: 0 0 25px rgba(255, 157, 0, 0.4);
+  background: linear-gradient(135deg, rgba(255, 157, 0, 0.1), transparent);
+}
+
+/* ========== 旧版社交链接（竖版，保留兼容） ========== */
 .social-links {
   display: flex;
   flex-wrap: wrap;
@@ -1057,7 +1137,7 @@ input[type="search"]:focus {
   white-space: nowrap;
 }
 
-/* 各平台特色颜色 */
+/* 各平台特色颜色 - 竖版 */
 .social-link.github:hover { border-color: #6e5494; box-shadow: 0 0 30px rgba(110, 84, 148, 0.3); }
 .social-link.email:hover { border-color: #ea4335; box-shadow: 0 0 30px rgba(234, 67, 53, 0.3); }
 .social-link.scholar:hover { border-color: #4285f4; box-shadow: 0 0 30px rgba(66, 133, 244, 0.3); }

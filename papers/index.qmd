@@ -12,6 +12,7 @@ listing:
   grid-columns: 2
 ---
 
+```{=html}
 <!-- 3D 论文关系网络 -->
 <div class="paper-network-container">
   <div class="network-title">Knowledge Graph</div>
@@ -80,8 +81,8 @@ listing:
   </div>
   <div class="network-hint">✨ 悬停节点查看研究方向</div>
 </div>
+```
 
-<!-- 统计信息 -->
 ::: {.papers-stats}
 
 ::: {.stat-card}

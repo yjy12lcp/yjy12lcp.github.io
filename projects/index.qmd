@@ -12,6 +12,7 @@ listing:
   grid-columns: 2
 ---
 
+```{=html}
 <!-- 项目流水线可视化 -->
 <div class="pipeline-container">
   <div class="pipeline-title">Development Pipeline</div>
@@ -86,8 +87,8 @@ listing:
     </div>
   </div>
 </div>
+```
 
-<!-- 统计信息 -->
 ::: {.projects-stats}
 
 ::: {.stat-card}
