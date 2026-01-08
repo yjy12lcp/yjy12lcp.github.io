@@ -22,15 +22,13 @@ website:
 
 format:
   html:
-    theme:
-      light: sandstone
-      dark: darkly
+    theme: darkly
     toc: true
     toc-location: right
     smooth-scroll: true
     link-external-newwindow: true
     css: styles.css
-    mainfont: "Crimson Text, Noto Serif SC, Georgia, serif"
-    monofont: "JetBrains Mono, Consolas, monospace"
+    mainfont: "Inter, system-ui, -apple-system, sans-serif"
+    monofont: "JetBrains Mono, Fira Code, monospace"
 
 
