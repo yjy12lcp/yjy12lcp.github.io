@@ -5,7 +5,6 @@ listing:
   contents: ../posts/projects
   sort: "date desc"
   categories: true
-  tags: true
   filter-ui: true
   page-size: 12
 ---
