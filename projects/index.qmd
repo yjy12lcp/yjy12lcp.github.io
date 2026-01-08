@@ -12,27 +12,25 @@ listing:
   type: default
 ---
 
-::: {.projects-stats}
-
-::: {.stat-card}
-[🔧]{.stat-icon}
-[<span id="project-count">-</span>]{.stat-value}
-[项目数量]{.stat-desc}
-:::
-
-::: {.stat-card}
-[🏷️]{.stat-icon}
-[<span id="project-category-count">-</span>]{.stat-value}
-[技术领域]{.stat-desc}
-:::
-
-::: {.stat-card}
-[📅]{.stat-icon}
-[<span id="project-latest-date">-</span>]{.stat-value}
-[最近更新]{.stat-desc}
-:::
-
-:::
+```{=html}
+<div class="projects-stats">
+  <div class="stat-card">
+    <span class="stat-icon">🔧</span>
+    <span class="stat-value"><span id="project-count">-</span></span>
+    <span class="stat-desc">项目数量</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-icon">🏷️</span>
+    <span class="stat-value"><span id="project-category-count">-</span></span>
+    <span class="stat-desc">技术领域</span>
+  </div>
+  <div class="stat-card">
+    <span class="stat-icon">📅</span>
+    <span class="stat-value"><span id="project-latest-date">-</span></span>
+    <span class="stat-desc">最近更新</span>
+  </div>
+</div>
+```
 
 ---
 
@@ -48,57 +46,30 @@ listing:
 (function() {
   function init() {
     var projects = [];
-    
-    // 查找 listing 中的项目
-    var listingEl = document.getElementById('projects-listing');
-    if (listingEl) {
-      var links = listingEl.querySelectorAll('a');
-      links.forEach(function(link) {
-        var href = link.getAttribute('href');
-        var text = link.textContent.trim();
-        if (href && text && href.indexOf('posts/projects') !== -1 && text.length > 2) {
-          var exists = projects.some(function(p) { return p.url === link.href; });
-          if (!exists) {
-            projects.push({ title: text, url: link.href });
-          }
+    var links = document.querySelectorAll('a[href*="posts/projects"]');
+    links.forEach(function(link) {
+      var text = link.textContent.trim();
+      if (text && text.length > 3) {
+        var exists = projects.some(function(p) { return p.url === link.href; });
+        if (!exists) {
+          projects.push({ title: text, url: link.href });
         }
-      });
-    }
+      }
+    });
     
-    // 备用方案
-    if (projects.length === 0) {
-      var allLinks = document.querySelectorAll('a[href*="posts/projects"]');
-      allLinks.forEach(function(link) {
-        var text = link.textContent.trim();
-        if (text && text.length > 3) {
-          var exists = projects.some(function(p) { return p.url === link.href; });
-          if (!exists) {
-            projects.push({ title: text, url: link.href });
-          }
-        }
-      });
-    }
+    console.log('Found projects:', projects.length);
     
-    console.log('Found projects:', projects);
-    
-    // 更新统计
     var projectCountEl = document.getElementById('project-count');
-    if (projectCountEl) {
-      projectCountEl.textContent = projects.length > 0 ? projects.length : '0';
-    }
+    if (projectCountEl) projectCountEl.textContent = projects.length || '0';
     
     var categoryCountEl = document.getElementById('project-category-count');
-    if (categoryCountEl) {
-      categoryCountEl.textContent = projects.length > 0 ? '1' : '0';
-    }
+    if (categoryCountEl) categoryCountEl.textContent = projects.length > 0 ? '1' : '0';
   }
   
   if (document.readyState === 'complete') {
-    setTimeout(init, 300);
+    setTimeout(init, 100);
   } else {
-    window.addEventListener('load', function() {
-      setTimeout(init, 300);
-    });
+    window.addEventListener('load', function() { setTimeout(init, 100); });
   }
 })();
 </script>
