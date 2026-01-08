@@ -1,0 +1,41 @@
+:root{
+  --content-max: 860px;
+}
+
+/* Keep an academic, airy layout */
+.page-columns{
+  max-width: var(--content-max);
+}
+
+/* Typography */
+body{
+  line-height: 1.75;
+  letter-spacing: .01em;
+}
+
+h1, h2, h3{
+  letter-spacing: .005em;
+}
+
+/* Subtle link styling */
+a{
+  text-decoration-thickness: from-font;
+  text-underline-offset: .18em;
+}
+
+/* Listing cards feel */
+.quarto-listing .listing-item{
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+/* Dark mode tweak */
+@media (prefers-color-scheme: dark){
+  .quarto-listing .listing-item{
+    border-color: rgba(255,255,255,.10);
+  }
+}
+
+

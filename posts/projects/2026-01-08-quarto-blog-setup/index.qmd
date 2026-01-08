@@ -1,0 +1,18 @@
+---
+title: "Quarto 博客搭建：从 0 到自动部署"
+date: 2026-01-08
+categories: ["项目实现", "工程"]
+tags: ["quarto", "github-pages", "ci-cd"]
+---
+
+## 目标
+
+- 本地写 `qmd`
+- 推送到 GitHub 后自动渲染并发布到 GitHub Pages
+
+## 关键配置
+
+- `_quarto.yml`：网站结构与主题
+- `.github/workflows/publish.yml`：Actions 自动部署
+
+

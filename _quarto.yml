@@ -4,18 +4,31 @@ project:
 
 website:
   title: "yjy12lcp"
+  description: "论文阅读与项目实现笔记"
   navbar:
     left:
       - href: index.qmd
         text: 首页
+      - href: papers/index.qmd
+        text: 论文阅读
+      - href: projects/index.qmd
+        text: 项目实现
       - href: posts/index.qmd
-        text: 博客
+        text: 全部文章
+      - href: about.qmd
+        text: 关于
   page-footer:
     left: "© 2026 yjy12lcp"
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: cosmo
+      dark: darkly
     toc: true
+    toc-location: right
+    smooth-scroll: true
+    link-external-newwindow: true
+    css: styles.css
 
 

@@ -1,0 +1,15 @@
+---
+title: "论文阅读"
+subtitle: "按主题整理，并通过标签建立关联"
+listing:
+  contents: ../posts/papers
+  sort: "date desc"
+  categories: true
+  tags: true
+  filter-ui: true
+  page-size: 12
+---
+
+这里收录我的论文阅读笔记。建议使用 **tags** 表示“主题/方法”，用 **categories** 表示“方向/课程/领域”。
+
+

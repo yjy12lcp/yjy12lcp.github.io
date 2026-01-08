@@ -1,0 +1,25 @@
+---
+title: "Attention Is All You Need"
+date: 2026-01-08
+categories: ["论文阅读", "NLP"]
+tags: ["transformer", "attention", "sequence-modeling"]
+paper:
+  venue: "NeurIPS 2017"
+  authors: ["Vaswani", "Shazeer", "Parmar", "et al."]
+  url: "https://arxiv.org/abs/1706.03762"
+---
+
+## 一句话总结
+
+用自注意力替代 RNN/CNN，实现更高效的序列建模。
+
+## 关键点
+
+- 结构：Encoder-Decoder，多头注意力 + 前馈网络
+- 训练技巧：残差、LayerNorm、位置编码
+
+## 我关心的问题 / 复现计划
+
+- 在我的数据集上与 RNN baseline 的速度与效果对比
+
+
