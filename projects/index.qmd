@@ -1,14 +1,117 @@
 ---
-title: "项目实现"
-subtitle: "工程实践与复现记录"
+title: "🛠️ Projects"
+subtitle: "从论文到产品，工程实践全记录"
+page-layout: full
 listing:
   contents: ../posts/projects
   sort: "date desc"
   categories: true
   filter-ui: true
   page-size: 12
+  type: grid
+  grid-columns: 2
 ---
 
-这里收录我的项目实现与复现记录（代码、踩坑、性能对比等）。
+<!-- 项目流水线可视化 -->
+<div class="pipeline-container">
+  <div class="pipeline-title">Development Pipeline</div>
+  <div class="pipeline">
+    <div class="pipeline-stage stage-1">
+      <div class="stage-icon">📄</div>
+      <div class="stage-label">Paper</div>
+      <div class="stage-desc">阅读论文</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage stage-2">
+      <div class="stage-icon">💡</div>
+      <div class="stage-label">Idea</div>
+      <div class="stage-desc">提取核心</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage stage-3">
+      <div class="stage-icon">⚙️</div>
+      <div class="stage-label">Code</div>
+      <div class="stage-desc">代码实现</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage stage-4">
+      <div class="stage-icon">🧪</div>
+      <div class="stage-label">Test</div>
+      <div class="stage-desc">实验验证</div>
+    </div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-stage stage-5">
+      <div class="stage-icon">🚀</div>
+      <div class="stage-label">Deploy</div>
+      <div class="stage-desc">部署上线</div>
+    </div>
+  </div>
+</div>
 
+<!-- 技术栈展示 -->
+<div class="tech-stack-section">
+  <div class="tech-stack-title">Tech Stack</div>
+  <div class="tech-stack">
+    <div class="tech-item" data-tech="Python">
+      <span class="tech-icon">🐍</span>
+      <span class="tech-name">Python</span>
+    </div>
+    <div class="tech-item" data-tech="PyTorch">
+      <span class="tech-icon">🔥</span>
+      <span class="tech-name">PyTorch</span>
+    </div>
+    <div class="tech-item" data-tech="TensorFlow">
+      <span class="tech-icon">📊</span>
+      <span class="tech-name">TensorFlow</span>
+    </div>
+    <div class="tech-item" data-tech="Docker">
+      <span class="tech-icon">🐳</span>
+      <span class="tech-name">Docker</span>
+    </div>
+    <div class="tech-item" data-tech="CUDA">
+      <span class="tech-icon">⚡</span>
+      <span class="tech-name">CUDA</span>
+    </div>
+    <div class="tech-item" data-tech="Linux">
+      <span class="tech-icon">🐧</span>
+      <span class="tech-name">Linux</span>
+    </div>
+    <div class="tech-item" data-tech="Git">
+      <span class="tech-icon">📦</span>
+      <span class="tech-name">Git</span>
+    </div>
+    <div class="tech-item" data-tech="HuggingFace">
+      <span class="tech-icon">🤗</span>
+      <span class="tech-name">HuggingFace</span>
+    </div>
+  </div>
+</div>
 
+<!-- 统计信息 -->
+::: {.projects-stats}
+
+::: {.stat-card}
+[🔧]{.stat-icon}
+[5+]{.stat-value}
+[项目数量]{.stat-desc}
+:::
+
+::: {.stat-card}
+[⭐]{.stat-icon}
+[100+]{.stat-value}
+[代码提交]{.stat-desc}
+:::
+
+::: {.stat-card}
+[📈]{.stat-icon}
+[3+]{.stat-value}
+[开源贡献]{.stat-desc}
+:::
+
+:::
+
+---
+
+## 📂 All Projects
+
+按时间排序，点击查看详细实现过程。

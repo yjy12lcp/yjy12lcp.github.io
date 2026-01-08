@@ -42,17 +42,39 @@ page-layout: full
 
 :::
 
-<!-- 技能标签 -->
-::: {.tags-container}
-
-[🤖 Deep Learning]{.skill-tag}
-[📊 Computer Vision]{.skill-tag}
-[🔬 NLP]{.skill-tag}
-[🚀 MLOps]{.skill-tag}
-[🐍 Python]{.skill-tag}
-[⚡ PyTorch]{.skill-tag}
-
-:::
+<!-- 社交链接 -->
+<div class="social-links">
+  <a href="https://github.com/yjy12lcp" target="_blank" class="social-link github">
+    <span class="social-icon">🐙</span>
+    <span class="social-name">GitHub</span>
+    <span class="social-handle">@yjy12lcp</span>
+  </a>
+  <a href="mailto:helloworld12yjy@gmail.com" class="social-link email">
+    <span class="social-icon">📧</span>
+    <span class="social-name">Email</span>
+    <span class="social-handle">helloworld12yjy@gmail.com</span>
+  </a>
+  <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" class="social-link scholar">
+    <span class="social-icon">🎓</span>
+    <span class="social-name">Google Scholar</span>
+    <span class="social-handle">Publications</span>
+  </a>
+  <a href="https://twitter.com/your_twitter" target="_blank" class="social-link twitter">
+    <span class="social-icon">🐦</span>
+    <span class="social-name">Twitter/X</span>
+    <span class="social-handle">@your_twitter</span>
+  </a>
+  <a href="https://www.linkedin.com/in/your_linkedin" target="_blank" class="social-link linkedin">
+    <span class="social-icon">💼</span>
+    <span class="social-name">LinkedIn</span>
+    <span class="social-handle">Connect</span>
+  </a>
+  <a href="https://huggingface.co/your_hf" target="_blank" class="social-link huggingface">
+    <span class="social-icon">🤗</span>
+    <span class="social-name">Hugging Face</span>
+    <span class="social-handle">Models & Datasets</span>
+  </a>
+</div>
 
 ---
 

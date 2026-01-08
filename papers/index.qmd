@@ -1,14 +1,111 @@
 ---
-title: "论文阅读"
-subtitle: "按主题整理，并通过标签建立关联"
+title: "📖 Papers"
+subtitle: "探索前沿，建立知识图谱"
+page-layout: full
 listing:
   contents: ../posts/papers
   sort: "date desc"
   categories: true
   filter-ui: true
   page-size: 12
+  type: grid
+  grid-columns: 2
 ---
 
-这里收录我的论文阅读笔记。建议使用 **tags** 表示“主题/方法”，用 **categories** 表示“方向/课程/领域”。
+<!-- 3D 论文关系网络 -->
+<div class="paper-network-container">
+  <div class="network-title">Knowledge Graph</div>
+  <div class="paper-network">
+    <div class="network-scene">
+      <!-- 中心节点 -->
+      <div class="network-node node-center" data-label="AI">
+        <span>🤖</span>
+      </div>
+      
+      <!-- 第一层节点 -->
+      <div class="network-node node-l1 node-1" data-label="Transformer">
+        <span>⚡</span>
+      </div>
+      <div class="network-node node-l1 node-2" data-label="Vision">
+        <span>👁️</span>
+      </div>
+      <div class="network-node node-l1 node-3" data-label="NLP">
+        <span>💬</span>
+      </div>
+      <div class="network-node node-l1 node-4" data-label="RL">
+        <span>🎮</span>
+      </div>
+      
+      <!-- 第二层节点 -->
+      <div class="network-node node-l2 node-5" data-label="BERT">
+        <span>📝</span>
+      </div>
+      <div class="network-node node-l2 node-6" data-label="GPT">
+        <span>🧠</span>
+      </div>
+      <div class="network-node node-l2 node-7" data-label="ViT">
+        <span>🖼️</span>
+      </div>
+      <div class="network-node node-l2 node-8" data-label="CLIP">
+        <span>🔗</span>
+      </div>
+      <div class="network-node node-l2 node-9" data-label="Diffusion">
+        <span>🎨</span>
+      </div>
+      <div class="network-node node-l2 node-10" data-label="LLM">
+        <span>💡</span>
+      </div>
+      
+      <!-- 连接线 -->
+      <svg class="network-lines" viewBox="0 0 400 400">
+        <line class="network-line" x1="200" y1="200" x2="200" y2="80"/>
+        <line class="network-line" x1="200" y1="200" x2="320" y2="200"/>
+        <line class="network-line" x1="200" y1="200" x2="200" y2="320"/>
+        <line class="network-line" x1="200" y1="200" x2="80" y2="200"/>
+        <line class="network-line line-secondary" x1="200" y1="80" x2="120" y2="50"/>
+        <line class="network-line line-secondary" x1="200" y1="80" x2="280" y2="50"/>
+        <line class="network-line line-secondary" x1="320" y1="200" x2="350" y2="130"/>
+        <line class="network-line line-secondary" x1="320" y1="200" x2="350" y2="270"/>
+        <line class="network-line line-secondary" x1="200" y1="320" x2="130" y2="350"/>
+        <line class="network-line line-secondary" x1="200" y1="320" x2="270" y2="350"/>
+      </svg>
+      
+      <!-- 粒子效果 -->
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+    </div>
+  </div>
+  <div class="network-hint">✨ 悬停节点查看研究方向</div>
+</div>
 
+<!-- 统计信息 -->
+::: {.papers-stats}
 
+::: {.stat-card}
+[📚]{.stat-icon}
+[10+]{.stat-value}
+[论文笔记]{.stat-desc}
+:::
+
+::: {.stat-card}
+[🏷️]{.stat-icon}
+[5+]{.stat-value}
+[研究领域]{.stat-desc}
+:::
+
+::: {.stat-card}
+[🔗]{.stat-icon}
+[20+]{.stat-value}
+[知识关联]{.stat-desc}
+:::
+
+:::
+
+---
+
+## 📑 All Papers
+
+使用 **分类** 筛选研究领域，或直接搜索关键词。
