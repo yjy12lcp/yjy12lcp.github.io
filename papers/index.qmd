@@ -19,7 +19,6 @@ Knowledge Graph
 :::
 
 ::: {#paper-network-3d .paper-network-3d}
-<!-- 气泡将由 JavaScript 动态生成 -->
 :::
 
 ::: {.network-hint}
@@ -62,129 +61,158 @@ Knowledge Graph
 ```{=html}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // ========== 统计数字实时计算 ==========
-  const listingItems = document.querySelectorAll('#papers-listing .quarto-listing-default .list-item, #papers-listing .quarto-post, #papers-listing .g-col-1');
-  const paperCount = listingItems.length;
-  
-  // 更新论文数量
-  const paperCountEl = document.getElementById('paper-count');
-  if (paperCountEl) {
-    paperCountEl.textContent = paperCount > 0 ? paperCount : '0';
-  }
-  
-  // 统计分类数量
-  const categories = new Set();
-  document.querySelectorAll('#papers-listing .listing-category, #papers-listing .quarto-category').forEach(cat => {
-    categories.add(cat.textContent.trim());
-  });
-  const categoryCountEl = document.getElementById('category-count');
-  if (categoryCountEl) {
-    categoryCountEl.textContent = categories.size > 0 ? categories.size : '0';
-  }
-  
-  // 获取最近更新日期
-  const dates = document.querySelectorAll('#papers-listing .listing-date');
-  if (dates.length > 0) {
-    const latestDateEl = document.getElementById('latest-date');
-    if (latestDateEl) {
-      latestDateEl.textContent = dates[0].textContent.trim().slice(0, 7) || '-';
+  // 延迟执行，确保 listing 已渲染
+  setTimeout(function() {
+    // ========== 查找 listing 中的文章 ==========
+    const listingContainer = document.getElementById('papers-listing');
+    if (!listingContainer) {
+      console.log('Listing container not found');
+      return;
     }
-  }
-  
-  // ========== 3D 气泡网络 ==========
-  const container = document.getElementById('paper-network-3d');
-  if (!container) return;
-  
-  // 收集论文数据
-  const papers = [];
-  listingItems.forEach((item, index) => {
-    const titleEl = item.querySelector('.listing-title a, .post-title a, a');
-    const categoryEl = item.querySelector('.listing-category, .quarto-category');
-    if (titleEl) {
-      papers.push({
-        title: titleEl.textContent.trim(),
-        url: titleEl.href,
-        category: categoryEl ? categoryEl.textContent.trim() : '未分类'
+    
+    // 更通用的选择器 - 查找所有文章项
+    const listingItems = listingContainer.querySelectorAll('.quarto-post, .list-item, [class*="listing-item"], .card, .g-col-1, article, .quarto-grid-item');
+    console.log('Found listing items:', listingItems.length);
+    
+    // 如果上面的选择器没找到，尝试查找所有链接
+    let papers = [];
+    
+    if (listingItems.length > 0) {
+      listingItems.forEach((item) => {
+        // 查找标题链接
+        const titleEl = item.querySelector('a.title, .listing-title a, .card-title a, h3 a, h2 a, .title a, a[href*="posts"]');
+        const categoryEls = item.querySelectorAll('.listing-category, .quarto-category, .category, [class*="category"]');
+        const dateEl = item.querySelector('.listing-date, .date, [class*="date"], time');
+        
+        if (titleEl) {
+          const categories = [];
+          categoryEls.forEach(c => categories.push(c.textContent.trim()));
+          
+          papers.push({
+            title: titleEl.textContent.trim(),
+            url: titleEl.href,
+            category: categories.length > 0 ? categories[0] : '未分类',
+            date: dateEl ? dateEl.textContent.trim() : ''
+          });
+        }
       });
     }
-  });
-  
-  // 如果没有论文，显示示例气泡
-  if (papers.length === 0) {
-    papers.push(
-      { title: '发布你的第一篇论文笔记', url: '#', category: '开始' },
-      { title: '点击这里了解如何添加', url: 'about.qmd', category: '帮助' }
-    );
-  }
-  
-  // 创建 3D 场景
-  const scene = document.createElement('div');
-  scene.className = 'bubble-scene';
-  container.appendChild(scene);
-  
-  // 生成气泡
-  const bubbles = [];
-  const radius = 120;
-  papers.forEach((paper, i) => {
-    const bubble = document.createElement('a');
-    bubble.className = 'paper-bubble';
-    bubble.href = paper.url;
-    bubble.setAttribute('data-title', paper.title);
-    bubble.setAttribute('data-category', paper.category);
     
-    // 球面分布
-    const phi = Math.acos(-1 + (2 * i + 1) / papers.length);
-    const theta = Math.sqrt(papers.length * Math.PI) * phi;
+    // 备用方案：直接查找所有文章链接
+    if (papers.length === 0) {
+      const allLinks = listingContainer.querySelectorAll('a[href*="posts/papers"]');
+      allLinks.forEach(link => {
+        if (link.textContent.trim() && !link.classList.contains('listing-category')) {
+          papers.push({
+            title: link.textContent.trim(),
+            url: link.href,
+            category: '论文',
+            date: ''
+          });
+        }
+      });
+    }
     
-    const x = radius * Math.cos(theta) * Math.sin(phi);
-    const y = radius * Math.sin(theta) * Math.sin(phi);
-    const z = radius * Math.cos(phi);
+    console.log('Found papers:', papers.length, papers);
     
-    bubble.style.setProperty('--x', x + 'px');
-    bubble.style.setProperty('--y', y + 'px');
-    bubble.style.setProperty('--z', z + 'px');
+    // ========== 更新统计数字 ==========
+    const paperCountEl = document.getElementById('paper-count');
+    if (paperCountEl) {
+      paperCountEl.textContent = papers.length;
+    }
     
-    // 气泡内容
-    bubble.innerHTML = '<span class="bubble-dot"></span><span class="bubble-label">' + paper.title.slice(0, 20) + (paper.title.length > 20 ? '...' : '') + '</span>';
+    // 统计分类
+    const categories = new Set();
+    papers.forEach(p => {
+      if (p.category) categories.add(p.category);
+    });
+    const categoryCountEl = document.getElementById('category-count');
+    if (categoryCountEl) {
+      categoryCountEl.textContent = categories.size;
+    }
     
-    scene.appendChild(bubble);
-    bubbles.push({ el: bubble, x, y, z });
-  });
-  
-  // 中心节点
-  const centerBubble = document.createElement('div');
-  centerBubble.className = 'center-bubble';
-  centerBubble.innerHTML = '🧠';
-  scene.appendChild(centerBubble);
-  
-  // 鼠标跟随旋转
-  let rotateX = 0, rotateY = 0;
-  let targetRotateX = 0, targetRotateY = 0;
-  
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    // 最近更新
+    if (papers.length > 0 && papers[0].date) {
+      const latestDateEl = document.getElementById('latest-date');
+      if (latestDateEl) {
+        latestDateEl.textContent = papers[0].date.slice(0, 7) || '-';
+      }
+    }
     
-    targetRotateY = ((e.clientX - centerX) / rect.width) * 30;
-    targetRotateX = -((e.clientY - centerY) / rect.height) * 30;
-  });
-  
-  container.addEventListener('mouseleave', () => {
-    targetRotateX = 0;
-    targetRotateY = 0;
-  });
-  
-  // 动画循环
-  function animate() {
-    rotateX += (targetRotateX - rotateX) * 0.1;
-    rotateY += (targetRotateY - rotateY) * 0.1;
+    // ========== 3D 气泡网络 ==========
+    const container = document.getElementById('paper-network-3d');
+    if (!container) return;
     
-    scene.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    // 如果没有论文，显示示例
+    if (papers.length === 0) {
+      papers.push(
+        { title: '发布你的第一篇论文笔记', url: '#', category: '开始' }
+      );
+    }
     
-    requestAnimationFrame(animate);
-  }
-  animate();
+    // 创建 3D 场景
+    const scene = document.createElement('div');
+    scene.className = 'bubble-scene';
+    container.appendChild(scene);
+    
+    // 生成气泡
+    const radius = 100;
+    papers.forEach((paper, i) => {
+      const bubble = document.createElement('a');
+      bubble.className = 'paper-bubble';
+      bubble.href = paper.url;
+      
+      // 球面分布
+      const total = papers.length;
+      const phi = Math.acos(-1 + (2 * i + 1) / total);
+      const theta = Math.sqrt(total * Math.PI) * phi;
+      
+      const x = radius * Math.cos(theta) * Math.sin(phi);
+      const y = radius * Math.sin(theta) * Math.sin(phi);
+      const z = radius * Math.cos(phi);
+      
+      bubble.style.setProperty('--x', x + 'px');
+      bubble.style.setProperty('--y', y + 'px');
+      bubble.style.setProperty('--z', z + 'px');
+      
+      const shortTitle = paper.title.length > 15 ? paper.title.slice(0, 15) + '...' : paper.title;
+      bubble.innerHTML = '<span class="bubble-dot"></span><span class="bubble-label">' + shortTitle + '</span>';
+      
+      scene.appendChild(bubble);
+    });
+    
+    // 中心节点
+    const centerBubble = document.createElement('div');
+    centerBubble.className = 'center-bubble';
+    centerBubble.innerHTML = '🧠';
+    scene.appendChild(centerBubble);
+    
+    // 鼠标跟随旋转
+    let rotateX = 0, rotateY = 0;
+    let targetRotateX = 0, targetRotateY = 0;
+    
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      targetRotateY = ((e.clientX - centerX) / rect.width) * 25;
+      targetRotateX = -((e.clientY - centerY) / rect.height) * 25;
+    });
+    
+    container.addEventListener('mouseleave', () => {
+      targetRotateX = 0;
+      targetRotateY = 0;
+    });
+    
+    function animate() {
+      rotateX += (targetRotateX - rotateX) * 0.08;
+      rotateY += (targetRotateY - rotateY) * 0.08;
+      scene.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+      requestAnimationFrame(animate);
+    }
+    animate();
+    
+  }, 500); // 延迟 500ms 等待 listing 渲染
 });
 </script>
 ```

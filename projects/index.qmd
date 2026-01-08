@@ -46,33 +46,73 @@ listing:
 ```{=html}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // 统计项目数量
-  const listingItems = document.querySelectorAll('#projects-listing .quarto-listing-default .list-item, #projects-listing .quarto-post, #projects-listing .g-col-1');
-  const projectCount = listingItems.length;
-  
-  const projectCountEl = document.getElementById('project-count');
-  if (projectCountEl) {
-    projectCountEl.textContent = projectCount > 0 ? projectCount : '0';
-  }
-  
-  // 统计分类数量
-  const categories = new Set();
-  document.querySelectorAll('#projects-listing .listing-category, #projects-listing .quarto-category').forEach(cat => {
-    categories.add(cat.textContent.trim());
-  });
-  const categoryCountEl = document.getElementById('project-category-count');
-  if (categoryCountEl) {
-    categoryCountEl.textContent = categories.size > 0 ? categories.size : '0';
-  }
-  
-  // 获取最近更新日期
-  const dates = document.querySelectorAll('#projects-listing .listing-date');
-  if (dates.length > 0) {
-    const latestDateEl = document.getElementById('project-latest-date');
-    if (latestDateEl) {
-      latestDateEl.textContent = dates[0].textContent.trim().slice(0, 7) || '-';
+  setTimeout(function() {
+    const listingContainer = document.getElementById('projects-listing');
+    if (!listingContainer) return;
+    
+    // 查找文章项
+    const listingItems = listingContainer.querySelectorAll('.quarto-post, .list-item, [class*="listing-item"], .card, .g-col-1, article, .quarto-grid-item');
+    
+    let projects = [];
+    
+    if (listingItems.length > 0) {
+      listingItems.forEach((item) => {
+        const titleEl = item.querySelector('a.title, .listing-title a, .card-title a, h3 a, h2 a, .title a, a[href*="posts"]');
+        const categoryEls = item.querySelectorAll('.listing-category, .quarto-category, .category, [class*="category"]');
+        const dateEl = item.querySelector('.listing-date, .date, [class*="date"], time');
+        
+        if (titleEl) {
+          const categories = [];
+          categoryEls.forEach(c => categories.push(c.textContent.trim()));
+          
+          projects.push({
+            title: titleEl.textContent.trim(),
+            url: titleEl.href,
+            category: categories.length > 0 ? categories[0] : '未分类',
+            date: dateEl ? dateEl.textContent.trim() : ''
+          });
+        }
+      });
     }
-  }
+    
+    // 备用方案
+    if (projects.length === 0) {
+      const allLinks = listingContainer.querySelectorAll('a[href*="posts/projects"]');
+      allLinks.forEach(link => {
+        if (link.textContent.trim() && !link.classList.contains('listing-category')) {
+          projects.push({
+            title: link.textContent.trim(),
+            url: link.href,
+            category: '项目',
+            date: ''
+          });
+        }
+      });
+    }
+    
+    // 更新统计
+    const projectCountEl = document.getElementById('project-count');
+    if (projectCountEl) {
+      projectCountEl.textContent = projects.length;
+    }
+    
+    const categories = new Set();
+    projects.forEach(p => {
+      if (p.category) categories.add(p.category);
+    });
+    const categoryCountEl = document.getElementById('project-category-count');
+    if (categoryCountEl) {
+      categoryCountEl.textContent = categories.size;
+    }
+    
+    if (projects.length > 0 && projects[0].date) {
+      const latestDateEl = document.getElementById('project-latest-date');
+      if (latestDateEl) {
+        latestDateEl.textContent = projects[0].date.slice(0, 7) || '-';
+      }
+    }
+    
+  }, 500);
 });
 </script>
 ```
