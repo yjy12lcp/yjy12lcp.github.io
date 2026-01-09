@@ -1,3 +1,1 @@
-# 在每篇论文中添加具体的研究领域分类，如：
-# categories: ["Transformer", "NLP"]
-# categories: ["Vision", "多模态"]
+freeze: auto
