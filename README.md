@@ -43,18 +43,28 @@ mkdir posts/papers/2026-01-10-bert-paper
 
 ### 2. 创建 `index.qmd` 文件
 
-```markdown
+````markdown
 ---
 title: "BERT: Pre-training of Deep Bidirectional Transformers"
 description: "谷歌提出的预训练语言模型"
 date: 2026-01-10
 categories: ["NLP", "预训练", "Transformer"]
-tags: ["bert", "language-model", "fine-tuning"]
-paper:
-  venue: "NAACL 2019"
-  authors: ["Devlin", "Chang", "Lee", "Toutanova"]
-  url: "https://arxiv.org/abs/1810.04805"
 ---
+
+```{=html}
+<div class="paper-meta">
+  <div class="paper-info">
+    <span class="paper-venue">📍 NAACL 2019</span>
+    <span class="paper-authors">👥 Devlin, Chang, Lee, Toutanova</span>
+    <a href="https://arxiv.org/abs/1810.04805" target="_blank" class="paper-link">📄 arXiv</a>
+  </div>
+  <div class="paper-tags">
+    <span class="tag">bert</span>
+    <span class="tag">language-model</span>
+    <span class="tag">fine-tuning</span>
+  </div>
+</div>
+```
 
 ## 一句话总结
 
@@ -75,7 +85,7 @@ $$
 
 - 在我的数据集上的表现：...
 - 遇到的坑：...
-```
+````
 
 ### 3. 添加图片（可选）
 
@@ -330,12 +340,23 @@ title: "论文标题"
 description: "一句话描述"
 date: YYYY-MM-DD
 categories: ["领域1", "领域2"]
-tags: ["关键词1", "关键词2"]
-paper:
-  venue: "会议/期刊"
-  authors: ["作者1", "作者2"]
-  url: "论文链接"
 ---
+```
+
+然后在正文开头添加论文信息卡：
+
+```html
+<div class="paper-meta">
+  <div class="paper-info">
+    <span class="paper-venue">📍 会议名称</span>
+    <span class="paper-authors">👥 作者1, 作者2</span>
+    <a href="论文链接" target="_blank" class="paper-link">📄 arXiv</a>
+  </div>
+  <div class="paper-tags">
+    <span class="tag">标签1</span>
+    <span class="tag">标签2</span>
+  </div>
+</div>
 ```
 
 ### 项目文档

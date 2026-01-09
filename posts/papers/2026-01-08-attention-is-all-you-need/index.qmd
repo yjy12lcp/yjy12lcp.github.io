@@ -2,12 +2,22 @@
 title: "Attention Is All You Need"
 date: 2026-01-08
 categories: ["Transformer", "NLP"]
-tags: ["transformer", "attention", "sequence-modeling"]
-paper:
-  venue: "NeurIPS 2017"
-  authors: ["Vaswani", "Shazeer", "Parmar", "et al."]
-  url: "https://arxiv.org/abs/1706.03762"
 ---
+
+```{=html}
+<div class="paper-meta">
+  <div class="paper-info">
+    <span class="paper-venue">📍 NeurIPS 2017</span>
+    <span class="paper-authors">👥 Vaswani, Shazeer, Parmar, et al.</span>
+    <a href="https://arxiv.org/abs/1706.03762" target="_blank" class="paper-link">📄 arXiv</a>
+  </div>
+  <div class="paper-tags">
+    <span class="tag">transformer</span>
+    <span class="tag">attention</span>
+    <span class="tag">sequence-modeling</span>
+  </div>
+</div>
+```
 
 ## 一句话总结
 
@@ -21,5 +31,3 @@ paper:
 ## 我关心的问题 / 复现计划
 
 - 在我的数据集上与 RNN baseline 的速度与效果对比
-
-
