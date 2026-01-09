@@ -58,8 +58,9 @@ listing:
 
 构建故事发生的宏大背景与设定
 
-::: {#worldview-listing}
-:::
+```{=html}
+<div id="worldview-listing"></div>
+```
 
 ---
 
@@ -67,8 +68,9 @@ listing:
 
 记录每一个角色的故事与成长
 
-::: {#characters-listing}
-:::
+```{=html}
+<div id="characters-listing"></div>
+```
 
 ---
 
@@ -76,8 +78,9 @@ listing:
 
 那些改变命运走向的重要时刻
 
-::: {#keyplots-listing}
-:::
+```{=html}
+<div id="keyplots-listing"></div>
+```
 
 ---
 
@@ -85,14 +88,14 @@ listing:
 
 故事的主线章节
 
-::: {#chapters-listing}
-:::
+```{=html}
+<div id="chapters-listing"></div>
+```
 
 ```{=html}
 <script>
 (function() {
   function countItems() {
-    // 使用多种选择器匹配 Quarto 生成的列表项
     function countInListing(listingId) {
       var container = document.getElementById(listingId);
       if (!container) {
@@ -100,15 +103,19 @@ listing:
         return 0;
       }
       
-      // 尝试多种选择器
-      var items = container.querySelectorAll('.quarto-post, .list-item, .g-col-1, [class*="quarto-listing"] > div');
+      console.log('Found container: ' + listingId, container);
       
-      // 如果上面没找到，尝试查找链接
+      // 查找 Quarto 生成的列表项
+      var items = container.querySelectorAll('.quarto-post, .list-item, .g-col-1');
+      console.log('Items in ' + listingId + ':', items.length);
+      
       if (items.length === 0) {
-        var links = container.querySelectorAll('a[href*="posts/novel"]');
+        // 尝试查找链接
+        var links = container.querySelectorAll('a');
         var uniqueLinks = new Set();
         links.forEach(function(link) {
-          if (link.textContent.trim().length > 2) {
+          var text = link.textContent.trim();
+          if (text.length > 3 && link.href.includes('posts/novel')) {
             uniqueLinks.add(link.href);
           }
         });
@@ -136,16 +143,13 @@ listing:
     if (el4) el4.textContent = chaptersCount;
   }
   
-  // 多次尝试，确保列表加载完成
   if (document.readyState === 'complete') {
-    setTimeout(countItems, 100);
-    setTimeout(countItems, 500);
-    setTimeout(countItems, 1000);
+    setTimeout(countItems, 200);
+    setTimeout(countItems, 800);
   } else {
     window.addEventListener('load', function() {
-      setTimeout(countItems, 100);
-      setTimeout(countItems, 500);
-      setTimeout(countItems, 1000);
+      setTimeout(countItems, 200);
+      setTimeout(countItems, 800);
     });
   }
 })();
