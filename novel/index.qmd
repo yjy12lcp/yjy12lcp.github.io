@@ -58,9 +58,8 @@ listing:
 
 构建故事发生的宏大背景与设定
 
-```{=html}
-<div id="worldview-listing"></div>
-```
+::: {#worldview-listing}
+:::
 
 ---
 
@@ -68,9 +67,8 @@ listing:
 
 记录每一个角色的故事与成长
 
-```{=html}
-<div id="characters-listing"></div>
-```
+::: {#characters-listing}
+:::
 
 ---
 
@@ -78,9 +76,8 @@ listing:
 
 那些改变命运走向的重要时刻
 
-```{=html}
-<div id="keyplots-listing"></div>
-```
+::: {#keyplots-listing}
+:::
 
 ---
 
@@ -88,68 +85,65 @@ listing:
 
 故事的主线章节
 
-```{=html}
-<div id="chapters-listing"></div>
-```
+::: {#chapters-listing}
+:::
 
 ```{=html}
 <script>
 (function() {
   function countItems() {
-    function countInListing(listingId) {
-      var container = document.getElementById(listingId);
-      if (!container) {
-        console.log('Container not found: ' + listingId);
-        return 0;
-      }
-      
-      console.log('Found container: ' + listingId, container);
-      
-      // 查找 Quarto 生成的列表项
-      var items = container.querySelectorAll('.quarto-post, .list-item, .g-col-1');
-      console.log('Items in ' + listingId + ':', items.length);
-      
-      if (items.length === 0) {
-        // 尝试查找链接
-        var links = container.querySelectorAll('a');
-        var uniqueLinks = new Set();
-        links.forEach(function(link) {
-          var text = link.textContent.trim();
-          if (text.length > 3 && link.href.includes('posts/novel')) {
-            uniqueLinks.add(link.href);
-          }
-        });
-        return uniqueLinks.size;
-      }
-      
-      return items.length;
-    }
+    // 直接扫描页面中所有链接，按路径分类统计
+    var allLinks = document.querySelectorAll('a[href]');
     
-    var worldviewCount = countInListing('worldview-listing');
-    var charactersCount = countInListing('characters-listing');
-    var keyplotsCount = countInListing('keyplots-listing');
-    var chaptersCount = countInListing('chapters-listing');
+    var worldviewSet = new Set();
+    var charactersSet = new Set();
+    var keyplotsSet = new Set();
+    var chaptersSet = new Set();
     
-    console.log('Novel counts:', worldviewCount, charactersCount, keyplotsCount, chaptersCount);
+    allLinks.forEach(function(link) {
+      var href = link.href || '';
+      var text = link.textContent.trim();
+      
+      // 只统计有实际内容的链接
+      if (text.length < 3) return;
+      
+      if (href.includes('posts/novel/worldview') || href.includes('novel/worldview')) {
+        worldviewSet.add(href);
+      } else if (href.includes('posts/novel/characters') || href.includes('novel/characters')) {
+        charactersSet.add(href);
+      } else if (href.includes('posts/novel/keyplots') || href.includes('novel/keyplots')) {
+        keyplotsSet.add(href);
+      } else if (href.includes('posts/novel/chapters') || href.includes('novel/chapters')) {
+        chaptersSet.add(href);
+      }
+    });
+    
+    console.log('Novel scan results:', {
+      worldview: worldviewSet.size,
+      characters: charactersSet.size,
+      keyplots: keyplotsSet.size,
+      chapters: chaptersSet.size
+    });
     
     var el1 = document.getElementById('worldview-count');
     var el2 = document.getElementById('characters-count');
     var el3 = document.getElementById('keyplots-count');
     var el4 = document.getElementById('chapters-count');
     
-    if (el1) el1.textContent = worldviewCount;
-    if (el2) el2.textContent = charactersCount;
-    if (el3) el3.textContent = keyplotsCount;
-    if (el4) el4.textContent = chaptersCount;
+    if (el1) el1.textContent = worldviewSet.size;
+    if (el2) el2.textContent = charactersSet.size;
+    if (el3) el3.textContent = keyplotsSet.size;
+    if (el4) el4.textContent = chaptersSet.size;
   }
   
+  // 页面加载后多次尝试
   if (document.readyState === 'complete') {
-    setTimeout(countItems, 200);
-    setTimeout(countItems, 800);
+    setTimeout(countItems, 300);
+    setTimeout(countItems, 1000);
   } else {
     window.addEventListener('load', function() {
-      setTimeout(countItems, 200);
-      setTimeout(countItems, 800);
+      setTimeout(countItems, 300);
+      setTimeout(countItems, 1000);
     });
   }
 })();
