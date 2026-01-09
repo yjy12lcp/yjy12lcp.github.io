@@ -1,7 +1,7 @@
 ---
 title: "Attention Is All You Need"
 date: 2026-01-08
-categories: ["论文阅读", "NLP"]
+categories: ["Transformer", "NLP"]
 tags: ["transformer", "attention", "sequence-modeling"]
 paper:
   venue: "NeurIPS 2017"

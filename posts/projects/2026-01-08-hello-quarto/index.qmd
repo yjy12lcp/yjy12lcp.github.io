@@ -1,7 +1,7 @@
 ---
 title: "Hello Quarto"
 date: 2026-01-08
-categories: ["项目实现"]
+categories: ["Quarto", "入门"]
 tags: ["quarto"]
 ---
 

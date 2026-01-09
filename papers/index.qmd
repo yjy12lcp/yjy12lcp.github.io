@@ -6,10 +6,12 @@ listing:
   id: papers-listing
   contents: "../posts/papers/**/index.qmd"
   sort: "date desc"
-  categories: true
+  categories: numbered
   filter-ui: true
-  page-size: 12
-  type: default
+  page-size: 20
+  type: grid
+  grid-columns: 2
+  fields: [title, description, date, categories]
 ---
 
 ```{=html}

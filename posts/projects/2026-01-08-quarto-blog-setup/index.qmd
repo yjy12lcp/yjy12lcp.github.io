@@ -1,7 +1,7 @@
 ---
 title: "Quarto 博客搭建：从 0 到自动部署"
 date: 2026-01-08
-categories: ["项目实现", "工程"]
+categories: ["Quarto", "CI/CD", "部署"]
 tags: ["quarto", "github-pages", "ci-cd"]
 ---
 
