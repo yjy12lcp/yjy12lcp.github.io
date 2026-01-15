@@ -2,7 +2,7 @@
 title: "LMS"
 description: "Linear Regression 与 LMS（Least Mean Squares）算法"
 date: 2026-01-15
-categories: ["课程笔记"]
+categories: ["Note"]
 tags: ["LMS"]
 ---
 
