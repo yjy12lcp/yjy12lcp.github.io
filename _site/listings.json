@@ -1,0 +1,64 @@
+[
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/posts/projects/2026-01-08-hello-quarto/index.html",
+      "/posts/projects/2026-01-08-quarto-blog-setup/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/projects/2026-01-08-hello-quarto/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/novel/worldview/2026-01-09-world-intro/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/novel/characters/2026-01-09-protagonist/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/index.html",
+    "items": [
+      "/posts/novel/chapters/2026-01-09-chapter-01/index.html",
+      "/posts/novel/characters/2026-01-09-protagonist/index.html",
+      "/posts/novel/keyplots/2026-01-09-first-encounter/index.html",
+      "/posts/novel/worldview/2026-01-09-world-intro/index.html",
+      "/posts/papers/2026-01-08-attention-is-all-you-need/index.html",
+      "/posts/projects/2026-01-08-hello-quarto/index.html",
+      "/posts/projects/2026-01-08-quarto-blog-setup/index.html"
+    ]
+  },
+  {
+    "listing": "/novel/index.html",
+    "items": [
+      "/posts/novel/worldview/2026-01-09-world-intro/index.html",
+      "/posts/novel/characters/2026-01-09-protagonist/index.html",
+      "/posts/novel/keyplots/2026-01-09-first-encounter/index.html",
+      "/posts/novel/chapters/2026-01-09-chapter-01/index.html"
+    ]
+  },
+  {
+    "listing": "/papers/index.html",
+    "items": [
+      "/posts/papers/2026-01-08-attention-is-all-you-need/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/novel/chapters/2026-01-09-chapter-01/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/novel/keyplots/2026-01-09-first-encounter/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/papers/2026-01-08-attention-is-all-you-need/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/projects/2026-01-08-quarto-blog-setup/index.html",
+    "items": []
+  }
+]

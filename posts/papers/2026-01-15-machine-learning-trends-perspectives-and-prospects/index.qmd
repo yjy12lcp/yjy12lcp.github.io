@@ -1,0 +1,174 @@
+---
+title: "Machine Learning: Trends, Perspectives, and Prospects"
+date: 2026-01-15
+categories: ["ML", "Survey"]
+---
+
+```{=html}
+<div class="paper-meta">
+  <div class="paper-info">
+    <span class="paper-venue">📍 Science 2015</span>
+    <span class="paper-authors">👥 Jordan, Mitchell</span>
+    <a href="https://www.science.org/doi/10.1126/science.aaa8415" target="_blank" class="paper-link">📄 Science</a>
+  </div>
+  <div class="paper-tags">
+    <span class="tag">survey</span>
+    <span class="tag">trend</span>
+    <span class="tag">ml-foundations</span>
+  </div>
+</div>
+```
+
+## *论文核心问题与总体框架*
+
+作者从机器学习的本质问题出发，提出两个根本问题：
+
+-   工程问题：如何构建能够通过经验自动改进性能的计算系统？
+-   科学问题：学习系统（算法、人类、组织）所遵循的统计—计算—信息论基本规律是什么？
+
+整篇文章围绕四个层次展开：
+
+-   机器学习的定义与理论基础
+-   三大核心学习范式及算法进展
+-   大数据背景下的新趋势
+-   长期挑战、伦理与社会影响
+
+## *机器学习的统一数学视角*
+
+作者给出一个高度抽象但统一的数学框架：机器学习可视为在假设空间中，通过数据驱动的优化搜索，最小化期望风险
+
+### 1. 数学建模形式
+
+一个典型学习问题可表述为：
+
+$$
+\min_{f \in \mathcal{H}} \ \mathbb{E}_{(x,y)\sim \mathcal{D}}[L(f(x),y)]
+$$
+
+其中：
+
+-   $\mathcal{H}$：假设空间（函数族）
+-   $L(\cdot)$：损失函数
+-   $\mathcal{D}$：数据分布（未知）
+
+实际问题中只能用经验风险：
+
+$$
+\hat{R}(f) = \frac{1}{n}\sum_{i=1}^{n} L(f(x_i), y_i)
+$$
+
+这一定式统一解释了：
+
+-   线性模型
+-   SVM
+-   深度神经网络
+-   贝叶斯模型
+-   强化学习中的策略优化（期望回报最大化）
+
+### 2. 理论核心：统计 × 计算 的权衡
+
+论文强调，机器学习的难点并非“是否可学”，而是：
+
+在有限数据 + 有限计算资源约束下，能学到什么程度？
+
+因此必须同时分析：
+
+-   样本复杂度（Sample Complexity）
+-   计算复杂度（Computational Complexity）
+
+这正是 PAC 学习理论、统计学习理论、优化理论的交汇点。
+
+## *三大核心学习范式的系统总结*
+
+### 1. 监督学习（Supervised Learning）
+
+输入：$(x_i, y_i)$\
+目标：学习映射 $f(x)$
+
+主流模型：
+
+-   决策树 / 随机森林
+-   Logistic Regression
+-   SVM
+-   深度神经网络（Deep Learning）
+
+深度学习的本质解释（作者视角）：
+
+深度网络 = 逐层学习表示（Representation Learning），通过梯度下降解决：
+
+$$
+\min_{\theta}\sum_i L(f_\theta(x_i), y_i)
+$$
+
+成功原因并非“理论突破”，而是：
+
+-   大规模数据
+-   GPU 并行计算
+-   端到端优化
+
+### 2. 无监督学习（Unsupervised Learning）
+
+数据无标签，核心目标是发现数据结构。
+
+代表任务：
+
+-   降维（PCA、Manifold Learning、Autoencoder）
+-   聚类
+-   主题模型（LDA）
+
+数学上通常对应：
+
+-   最大似然估计（MLE）
+-   贝叶斯推断
+-   矩阵分解 / 张量分解
+
+作者指出：无监督学习是未来突破“标注瓶颈”的关键路径。
+
+### 3. 强化学习（Reinforcement Learning）
+
+环境：Markov Decision Process (MDP)\
+目标：最大化期望累计回报
+
+$$
+\max_{\pi} \ \mathbb{E}\left[\sum_{t=0}^{\infty}\gamma^t r_t\right]
+$$
+
+关键困难：
+
+-   Credit Assignment
+-   探索—利用权衡
+-   高维状态空间
+
+论文强调其与控制理论、运筹学、神经科学的深度联系。
+
+## *机器学习的新趋势*
+
+### 1. 从“算法”到“系统”
+
+机器学习不再是单一模型，而是分布式、并行、流水线化的系统工程，例如：
+
+-   Spark + ML Pipelines
+-   大规模在线学习
+
+### 2. 资源受限学习（Resource-Constrained ML）
+
+论文明确提出未来算法需要在精度、隐私、通信、计算之间权衡。典型例子：
+
+-   差分隐私（Differential Privacy）
+-   分布式学习中的通信复杂度下界
+
+### 3. 统计—计算不可达性（Statistical-Computational Gap）
+
+某些问题在统计上可行，但计算上不可行（NP-hard）。这是近年来理论 ML 的核心研究方向之一。
+
+## *长期挑战与前沿方向*
+
+作者提出多个至今仍是前沿热点的问题：
+
+-   终身学习（Lifelong Learning）
+-   多任务 / 迁移学习
+-   人机协同学习
+-   可解释性
+-   伦理、公平、隐私
+
+机器学习不仅是技术问题，更是社会系统的一部分。

@@ -25,9 +25,9 @@ categories: ["Transformer", "NLP"]
 
 ## 关键点
 
-- 结构：Encoder-Decoder，多头注意力 + 前馈网络
-- 训练技巧：残差、LayerNorm、位置编码
+-   结构：Encoder-Decoder，多头注意力 + 前馈网络
+-   训练技巧：残差、LayerNorm、位置编码
 
 ## 我关心的问题 / 复现计划
 
-- 在我的数据集上与 RNN baseline 的速度与效果对比
+-   在我的数据集上与 RNN baseline 的速度与效果对比
