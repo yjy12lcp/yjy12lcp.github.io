@@ -42,6 +42,7 @@
   {
     "listing": "/papers/index.html",
     "items": [
+      "/posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html",
       "/posts/papers/2026-01-08-attention-is-all-you-need/index.html"
     ]
   },
@@ -60,5 +61,19 @@
   {
     "listing": "/posts/projects/2026-01-08-quarto-blog-setup/index.html",
     "items": []
+  },
+  {
+    "listing": "/posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/notes/2026-01-15-notes-template/index.html",
+    "items": []
+  },
+  {
+    "listing": "/notes/index.html",
+    "items": [
+      "/posts/notes/2026-01-15-notes-template/index.html"
+    ]
   }
 ]

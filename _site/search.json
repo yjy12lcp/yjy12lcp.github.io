@@ -144,7 +144,7 @@
     "href": "index.html",
     "title": "Helloworld",
     "section": "",
-    "text": "欢迎来到我的学术空间 —— 在这里探索 AI 前沿论文 与 工程实践，记录从理论到代码的每一步。\n\n\n\n0\nPapers\n\n\n0\nProjects\n\n\n∞\nCuriosity\n\n\n\n\n  \n    \n    GitHub\n  \n  \n    \n    Email\n  \n  \n    \n    Scholar\n  \n  \n    \n    Twitter\n  \n  \n    \n    LinkedIn\n  \n  \n    \n    HuggingFace\n  \n\n\n\nExplore\n\n  \n    📖\n    \n      Papers\n      深度阅读经典与前沿论文，按领域分类，建立知识图谱\n      \n        Transformer\n        Vision\n        LLM\n      \n    \n    →\n  \n  \n    🛠️\n    \n      Projects\n      算法复现、模型训练、工程踩坑，从 Paper 到 Production\n      \n        PyTorch\n        Deploy\n        MLOps\n      \n    \n    →\n  \n\n\n\n“The best way to learn is to teach.”\n\n\n📄 查看个人简介 · 📖 小说创作"
+    "text": "欢迎来到我的学术空间 —— 在这里探索 AI 前沿论文 与 工程实践，记录从理论到代码的每一步。\n\n\n\n0\nPapers\n\n\n0\nProjects\n\n\n∞\nCuriosity\n\n\n\n\n  \n    \n    GitHub\n  \n  \n    \n    Email\n  \n  \n    \n    Scholar\n  \n  \n    \n    Twitter\n  \n  \n    \n    LinkedIn\n  \n  \n    \n    HuggingFace\n  \n\n\n\nExplore\n\n  \n    📖\n    \n      Papers\n      深度阅读经典与前沿论文，按领域分类，建立知识图谱\n      \n        Transformer\n        Vision\n        LLM\n      \n    \n    →\n  \n  \n    🛠️\n    \n      Projects\n      算法复现、模型训练、工程踩坑，从 Paper 到 Production\n      \n        PyTorch\n        Deploy\n        MLOps\n      \n    \n    →\n  \n  \n    📝\n    \n      Notes\n      每日课程学习记录与复盘，把知识拆成可复用的卡片\n      \n        课程要点\n        练习\n        反思\n      \n    \n    →\n  \n\n\n\n“The best way to learn is to teach.”\n\n\n📄 查看个人简介 · 📖 小说创作"
   },
   {
     "objectID": "papers/index.html",
@@ -158,7 +158,7 @@
     "href": "papers/index.html#all-papers",
     "title": "📖 Papers",
     "section": "📑 All Papers",
-    "text": "📑 All Papers\n使用 分类 筛选研究领域，或直接搜索关键词。\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\nAttention Is All You Need\n\n\n\nTransformer\n\nNLP\n\n\n\n\n\n\n\nJan 8, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "📑 All Papers\n使用 分类 筛选研究领域，或直接搜索关键词。\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\nMachine Learning: Trends, Perspectives, and Prospects\n\n\n\nML\n\nSurvey\n\n\n\n\n\n\n\nJan 15, 2026\n\n\n\n\n\n\n\n\n\n\nAttention Is All You Need\n\n\n\nTransformer\n\nNLP\n\n\n\n\n\n\n\nJan 8, 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/novel/chapters/2026-01-09-chapter-01/index.html",
@@ -250,5 +250,89 @@
     "title": "Quarto 博客搭建：从 0 到自动部署",
     "section": "关键配置",
     "text": "关键配置\n\n_quarto.yml：网站结构与主题\n.github/workflows/publish.yml：Actions 自动部署"
+  },
+  {
+    "objectID": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html",
+    "href": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html",
+    "title": "Machine Learning: Trends, Perspectives, and Prospects",
+    "section": "",
+    "text": "📍 Science 2015\n    👥 Jordan, Mitchell\n    📄 Science\n  \n  \n    survey\n    trend\n    ml-foundations"
+  },
+  {
+    "objectID": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#论文核心问题与总体框架",
+    "href": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#论文核心问题与总体框架",
+    "title": "Machine Learning: Trends, Perspectives, and Prospects",
+    "section": "论文核心问题与总体框架",
+    "text": "论文核心问题与总体框架\n作者从机器学习的本质问题出发，提出两个根本问题：\n\n工程问题：如何构建能够通过经验自动改进性能的计算系统？\n科学问题：学习系统（算法、人类、组织）所遵循的统计—计算—信息论基本规律是什么？\n\n整篇文章围绕四个层次展开：\n\n机器学习的定义与理论基础\n三大核心学习范式及算法进展\n大数据背景下的新趋势\n长期挑战、伦理与社会影响"
+  },
+  {
+    "objectID": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#机器学习的统一数学视角",
+    "href": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#机器学习的统一数学视角",
+    "title": "Machine Learning: Trends, Perspectives, and Prospects",
+    "section": "机器学习的统一数学视角",
+    "text": "机器学习的统一数学视角\n作者给出一个高度抽象但统一的数学框架：机器学习可视为在假设空间中，通过数据驱动的优化搜索，最小化期望风险\n\n1. 数学建模形式\n一个典型学习问题可表述为：\n\\[\n\\min_{f \\in \\mathcal{H}} \\ \\mathbb{E}_{(x,y)\\sim \\mathcal{D}}[L(f(x),y)]\n\\]\n其中：\n\n\\(\\mathcal{H}\\)：假设空间（函数族）\n\\(L(\\cdot)\\)：损失函数\n\\(\\mathcal{D}\\)：数据分布（未知）\n\n实际问题中只能用经验风险：\n\\[\n\\hat{R}(f) = \\frac{1}{n}\\sum_{i=1}^{n} L(f(x_i), y_i)\n\\]\n这一定式统一解释了：\n\n线性模型\nSVM\n深度神经网络\n贝叶斯模型\n强化学习中的策略优化（期望回报最大化）\n\n\n\n2. 理论核心：统计 × 计算 的权衡\n论文强调，机器学习的难点并非“是否可学”，而是：\n在有限数据 + 有限计算资源约束下，能学到什么程度？\n因此必须同时分析：\n\n样本复杂度（Sample Complexity）\n计算复杂度（Computational Complexity）\n\n这正是 PAC 学习理论、统计学习理论、优化理论的交汇点。"
+  },
+  {
+    "objectID": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#三大核心学习范式的系统总结",
+    "href": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#三大核心学习范式的系统总结",
+    "title": "Machine Learning: Trends, Perspectives, and Prospects",
+    "section": "三大核心学习范式的系统总结",
+    "text": "三大核心学习范式的系统总结\n\n1. 监督学习（Supervised Learning）\n输入：\\((x_i, y_i)\\)\n目标：学习映射 \\(f(x)\\)\n主流模型：\n\n决策树 / 随机森林\nLogistic Regression\nSVM\n深度神经网络（Deep Learning）\n\n深度学习的本质解释（作者视角）：\n深度网络 = 逐层学习表示（Representation Learning），通过梯度下降解决：\n\\[\n\\min_{\\theta}\\sum_i L(f_\\theta(x_i), y_i)\n\\]\n成功原因并非“理论突破”，而是：\n\n大规模数据\nGPU 并行计算\n端到端优化\n\n\n\n2. 无监督学习（Unsupervised Learning）\n数据无标签，核心目标是发现数据结构。\n代表任务：\n\n降维（PCA、Manifold Learning、Autoencoder）\n聚类\n主题模型（LDA）\n\n数学上通常对应：\n\n最大似然估计（MLE）\n贝叶斯推断\n矩阵分解 / 张量分解\n\n作者指出：无监督学习是未来突破“标注瓶颈”的关键路径。\n\n\n3. 强化学习（Reinforcement Learning）\n环境：Markov Decision Process (MDP)\n目标：最大化期望累计回报\n\\[\n\\max_{\\pi} \\ \\mathbb{E}\\left[\\sum_{t=0}^{\\infty}\\gamma^t r_t\\right]\n\\]\n关键困难：\n\nCredit Assignment\n探索—利用权衡\n高维状态空间\n\n论文强调其与控制理论、运筹学、神经科学的深度联系。"
+  },
+  {
+    "objectID": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#机器学习的新趋势",
+    "href": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#机器学习的新趋势",
+    "title": "Machine Learning: Trends, Perspectives, and Prospects",
+    "section": "机器学习的新趋势",
+    "text": "机器学习的新趋势\n\n1. 从“算法”到“系统”\n机器学习不再是单一模型，而是分布式、并行、流水线化的系统工程，例如：\n\nSpark + ML Pipelines\n大规模在线学习\n\n\n\n2. 资源受限学习（Resource-Constrained ML）\n论文明确提出未来算法需要在精度、隐私、通信、计算之间权衡。典型例子：\n\n差分隐私（Differential Privacy）\n分布式学习中的通信复杂度下界\n\n\n\n3. 统计—计算不可达性（Statistical-Computational Gap）\n某些问题在统计上可行，但计算上不可行（NP-hard）。这是近年来理论 ML 的核心研究方向之一。"
+  },
+  {
+    "objectID": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#长期挑战与前沿方向",
+    "href": "posts/papers/2026-01-15-machine-learning-trends-perspectives-and-prospects/index.html#长期挑战与前沿方向",
+    "title": "Machine Learning: Trends, Perspectives, and Prospects",
+    "section": "长期挑战与前沿方向",
+    "text": "长期挑战与前沿方向\n作者提出多个至今仍是前沿热点的问题：\n\n终身学习（Lifelong Learning）\n多任务 / 迁移学习\n人机协同学习\n可解释性\n伦理、公平、隐私\n\n机器学习不仅是技术问题，更是社会系统的一部分。"
+  },
+  {
+    "objectID": "posts/notes/2026-01-15-notes-template/index.html",
+    "href": "posts/notes/2026-01-15-notes-template/index.html",
+    "title": "学习笔记模板：Day 00",
+    "section": "",
+    "text": "用 1-2 句话概括当天课程的目标与结论，帮助未来的你快速回忆这节课“到底讲了什么、学完能做什么”。\n（示例：今天学习了线性回归的损失函数与梯度下降更新规则，并能手推导参数更新公式。）"
+  },
+  {
+    "objectID": "posts/notes/2026-01-15-notes-template/index.html#今日主题",
+    "href": "posts/notes/2026-01-15-notes-template/index.html#今日主题",
+    "title": "学习笔记模板：Day 00",
+    "section": "",
+    "text": "用 1-2 句话概括当天课程的目标与结论，帮助未来的你快速回忆这节课“到底讲了什么、学完能做什么”。\n（示例：今天学习了线性回归的损失函数与梯度下降更新规则，并能手推导参数更新公式。）"
+  },
+  {
+    "objectID": "posts/notes/2026-01-15-notes-template/index.html#核心概念",
+    "href": "posts/notes/2026-01-15-notes-template/index.html#核心概念",
+    "title": "学习笔记模板：Day 00",
+    "section": "核心概念",
+    "text": "核心概念\n用 3-5 条要点梳理关键定义、公式或逻辑链条，建立可复用的知识框架。\n（示例：目标函数、梯度更新、学习率、收敛条件、过拟合迹象。）"
+  },
+  {
+    "objectID": "posts/notes/2026-01-15-notes-template/index.html#练习复盘",
+    "href": "posts/notes/2026-01-15-notes-template/index.html#练习复盘",
+    "title": "学习笔记模板：Day 00",
+    "section": "练习复盘",
+    "text": "练习复盘\n记录练习的结果与卡点，并写下改进方案。重点是“问题 → 原因 → 解决”。\n（示例：手推导时忽略了矩阵维度；下次先写出维度表，再进行推导。）\n\n\n使用建议：每天更新一条笔记，保持结构一致，便于横向对比与复盘。"
+  },
+  {
+    "objectID": "notes/index.html",
+    "href": "notes/index.html",
+    "title": "📝 学习笔记",
+    "section": "",
+    "text": "Daily Learning Log\n    \n    记录每天的课程重点、练习与反思，形成可复用的知识卡片。\n    \n      课程要点\n      练习复盘\n      知识卡片\n    \n  \n  \n    \n      累计笔记\n      0\n    \n    \n      最近更新\n      -\n    \n    \n      学习节奏\n      Daily"
+  },
+  {
+    "objectID": "notes/index.html#all-notes",
+    "href": "notes/index.html#all-notes",
+    "title": "📝 学习笔记",
+    "section": "📘 All Notes",
+    "text": "📘 All Notes\n按时间排序，可通过分类筛选课程主题或关键词。\n\n尚未发布笔记，今天就开始记录吧。\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n学习笔记模板：Day 00\n\n\n\n课程笔记\n\n模板\n\n\n\n三段式结构示例：今日主题、核心概念、练习复盘\n\n\n\nJan 15, 2026\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-01-15">
+<meta name="description" content="三段式结构示例：今日主题、核心概念、练习复盘">
 
-<title>Helloworld</title>
+<title>学习笔记模板：Day 00 – Helloworld</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +25,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1efd7d63db35a8b87af4f72b40d62dff.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-listing/list.min.js"></script>
+<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-1efd7d63db35a8b87af4f72b40d62dff.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,10 +72,68 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -81,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Helloworld</span>
     </a>
   </div>
@@ -92,31 +154,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./papers/index.html"> 
+    <a class="nav-link" href="../../../papers/index.html"> 
 <span class="menu-text">论文阅读</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects/index.html"> 
+    <a class="nav-link" href="../../../projects/index.html"> 
 <span class="menu-text">项目实现</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./notes/index.html"> 
+    <a class="nav-link" href="../../../notes/index.html"> 
 <span class="menu-text">学习笔记</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./novel/index.html"> 
+    <a class="nav-link" href="../../../novel/index.html"> 
 <span class="menu-text">小说</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts/index.html"> 
+    <a class="nav-link" href="../../../posts/index.html"> 
 <span class="menu-text">全部文章</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">个人简介</span></a>
   </li>  
 </ul>
@@ -127,24 +189,39 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Helloworld</h1>
-<p class="subtitle lead">Study is all you need.</p>
+<h1 class="title">学习笔记模板：Day 00</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">课程笔记</div>
+    <div class="quarto-category">模板</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    三段式结构示例：今日主题、核心概念、练习复盘
+  </div>
 </div>
 
 
-
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 15, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -154,148 +231,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="floating-shapes">
-<div class="shape-left-1">
-
-</div>
-<div class="shape-left-2">
-
-</div>
-<div class="shape-right-1">
-
-</div>
-<div class="shape-right-2">
-
-</div>
-</div>
-<div class="lead">
-<p>欢迎来到我的学术空间 —— 在这里探索 <strong>AI 前沿论文</strong> 与 <strong>工程实践</strong>，记录从理论到代码的每一步。</p>
-</div>
-<div class="stats-container">
-<div class="stat-item">
-<p><span class="stat-number"><span id="home-paper-count">0</span></span></p>
-<p><span class="stat-label">Papers</span></p>
-</div>
-<div class="stat-item">
-<p><span class="stat-number"><span id="home-project-count">0</span></span></p>
-<p><span class="stat-label">Projects</span></p>
-</div>
-<div class="stat-item">
-<p><span class="stat-number">∞</span></p>
-<p><span class="stat-label">Curiosity</span></p>
-</div>
-</div>
-<!-- 社交链接 - 使用 SVG 图标 -->
-<div class="social-links-horizontal">
-  <a href="https://github.com/yjy12lcp" target="_blank" class="social-btn github">
-    <svg viewbox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
-    <span>GitHub</span>
-  </a>
-  <a href="mailto:helloworld12yjy@gmail.com" class="social-btn email">
-    <svg viewbox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-    <span>Email</span>
-  </a>
-  <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" class="social-btn scholar">
-    <svg viewbox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"></path></svg>
-    <span>Scholar</span>
-  </a>
-  <a href="https://twitter.com/your_twitter" target="_blank" class="social-btn twitter">
-    <svg viewbox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-    <span>Twitter</span>
-  </a>
-  <a href="https://www.linkedin.com/in/your_linkedin" target="_blank" class="social-btn linkedin">
-    <svg viewbox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
-    <span>LinkedIn</span>
-  </a>
-  <a href="https://huggingface.co/your_hf" target="_blank" class="social-btn huggingface">
-    <svg viewbox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 1.5c4.687 0 8.5 3.813 8.5 8.5s-3.813 8.5-8.5 8.5-8.5-3.813-8.5-8.5 3.813-8.5 8.5-8.5zM8.5 10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm7 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-7.25 5.5s1 2 3.75 2 3.75-2 3.75-2"></path></svg>
-    <span>HuggingFace</span>
-  </a>
-</div>
-<hr>
-<!-- 优化后的 Explore 区域 -->
-<h2 class="explore-title anchored">Explore</h2>
-<div class="explore-grid">
-  <a href="papers/index.html" class="explore-card papers-card">
-    <div class="card-icon">📖</div>
-    <div class="card-content">
-      <h3 class="anchored">Papers</h3>
-      <p>深度阅读经典与前沿论文，按领域分类，建立知识图谱</p>
-      <ul class="card-tags">
-        <li>Transformer</li>
-        <li>Vision</li>
-        <li>LLM</li>
-      </ul>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-  <a href="projects/index.html" class="explore-card projects-card">
-    <div class="card-icon">🛠️</div>
-    <div class="card-content">
-      <h3 class="anchored">Projects</h3>
-      <p>算法复现、模型训练、工程踩坑，从 Paper 到 Production</p>
-      <ul class="card-tags">
-        <li>PyTorch</li>
-        <li>Deploy</li>
-        <li>MLOps</li>
-      </ul>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-  <a href="notes/index.html" class="explore-card notes-card">
-    <div class="card-icon">📝</div>
-    <div class="card-content">
-      <h3 class="anchored">Notes</h3>
-      <p>每日课程学习记录与复盘，把知识拆成可复用的卡片</p>
-      <ul class="card-tags">
-        <li>课程要点</li>
-        <li>练习</li>
-        <li>反思</li>
-      </ul>
-    </div>
-    <div class="card-arrow">→</div>
-  </a>
-</div>
+<section id="今日主题" class="level2">
+<h2 class="anchored" data-anchor-id="今日主题">今日主题</h2>
+<p>用 1-2 句话概括当天课程的目标与结论，帮助未来的你快速回忆这节课“到底讲了什么、学完能做什么”。<br>
+（示例：今天学习了线性回归的损失函数与梯度下降更新规则，并能手推导参数更新公式。）</p>
+</section>
+<section id="核心概念" class="level2">
+<h2 class="anchored" data-anchor-id="核心概念">核心概念</h2>
+<p>用 3-5 条要点梳理关键定义、公式或逻辑链条，建立可复用的知识框架。<br>
+（示例：目标函数、梯度更新、学习率、收敛条件、过拟合迹象。）</p>
+</section>
+<section id="练习复盘" class="level2">
+<h2 class="anchored" data-anchor-id="练习复盘">练习复盘</h2>
+<p>记录练习的结果与卡点，并写下改进方案。重点是“问题 → 原因 → 解决”。<br>
+（示例：手推导时忽略了矩阵维度；下次先写出维度表，再进行推导。）</p>
 <hr>
 <blockquote class="blockquote">
-<p><em>“The best way to learn is to teach.”</em></p>
+<p>使用建议：每天更新一条笔记，保持结构一致，便于横向对比与复盘。</p>
 </blockquote>
-<div class="lead" style="margin-top: 2rem; font-size: 1rem;">
-<p>📄 <a href="./about.html">查看个人简介</a> · 📖 <a href="./novel/index.html">小说创作</a></p>
+
+
+
+</section>
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+
 </div>
-<script>
-document.addEventListener('DOMContentLoaded', async function() {
-  try {
-    const papersResponse = await fetch('papers/index.html');
-    const papersHtml = await papersResponse.text();
-    const papersDoc = new DOMParser().parseFromString(papersHtml, 'text/html');
-    const paperItems = papersDoc.querySelectorAll('a[href*="posts/papers"]');
-    const uniquePapers = new Set();
-    paperItems.forEach(function(link) {
-      if (link.textContent.trim().length > 3) uniquePapers.add(link.href);
-    });
-    const paperCountEl = document.getElementById('home-paper-count');
-    if (paperCountEl) paperCountEl.textContent = uniquePapers.size || '0';
-  } catch (e) {}
-  
-  try {
-    const projectsResponse = await fetch('projects/index.html');
-    const projectsHtml = await projectsResponse.text();
-    const projectsDoc = new DOMParser().parseFromString(projectsHtml, 'text/html');
-    const projectItems = projectsDoc.querySelectorAll('a[href*="posts/projects"]');
-    const uniqueProjects = new Set();
-    projectItems.forEach(function(link) {
-      if (link.textContent.trim().length > 3) uniqueProjects.add(link.href);
-    });
-    const projectCountEl = document.getElementById('home-project-count');
-    if (projectCountEl) projectCountEl.textContent = uniqueProjects.size || '0';
-  } catch (e) {}
-});
-</script>
-
-
-
-</main> <!-- /main -->
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -719,5 +683,5 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

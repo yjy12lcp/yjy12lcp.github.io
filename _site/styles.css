@@ -1185,14 +1185,14 @@ input[type="search"]:focus {
 
 .explore-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--space-md);
   margin: var(--space-lg) 0;
 }
 
 .explore-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-md);
   background: var(--bg-card);
   border: 2px solid var(--border-color);
@@ -1227,8 +1227,9 @@ input[type="search"]:focus {
 }
 
 .explore-card .card-icon {
-  font-size: 3rem;
+  font-size: 2.6rem;
   flex-shrink: 0;
+  margin-top: 0.2rem;
 }
 
 .explore-card .card-content {
@@ -1236,7 +1237,7 @@ input[type="search"]:focus {
 }
 
 .explore-card .card-content h3 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 0.5rem 0;
@@ -1252,6 +1253,7 @@ input[type="search"]:focus {
 .explore-card .card-tags {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1270,6 +1272,7 @@ input[type="search"]:focus {
   font-size: 1.5rem;
   color: var(--text-muted);
   transition: all 0.3s ease;
+  align-self: center;
 }
 
 .explore-card:hover .card-arrow {
@@ -1285,6 +1288,11 @@ input[type="search"]:focus {
 .projects-card:hover {
   border-color: var(--accent-purple);
   box-shadow: 0 20px 40px rgba(192, 132, 252, 0.15);
+}
+
+.notes-card:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 20px 40px rgba(34, 211, 238, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -2294,6 +2302,117 @@ input[type="search"]:focus {
 #chapters-listing .quarto-post,
 #chapters-listing .list-item {
   border-left: 4px solid var(--accent-purple) !important;
+}
+
+/* ========== Notes 页面 ========== */
+.notes-hero {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.notes-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-cyan);
+}
+
+.notes-hero-content {
+  flex: 1;
+  min-width: 240px;
+}
+
+.notes-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.notes-hero-title {
+  font-size: 2rem;
+  margin: 0.4rem 0 0.6rem;
+}
+
+.notes-hero-subtitle {
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-md);
+}
+
+.notes-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.notes-badge {
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.notes-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-sm);
+  min-width: 260px;
+  align-content: center;
+}
+
+.notes-stat-card {
+  background: rgba(20, 20, 22, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.notes-stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.notes-stat-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.notes-empty {
+  text-align: center;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  background: rgba(20, 20, 22, 0.6);
+  padding: var(--space-md);
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+@media (max-width: 900px) {
+  .notes-hero {
+    flex-direction: column;
+  }
+
+  .notes-hero-stats {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
 }
 
 @media (max-width: 768px) {

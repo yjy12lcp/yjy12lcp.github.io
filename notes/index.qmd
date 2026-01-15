@@ -55,6 +55,19 @@ listing:
 ```{=html}
 <script>
 (function() {
+  function resolveItems() {
+    var listing =
+      window['quarto-listings'] && window['quarto-listings']['listing-notes-listing'];
+    if (listing && listing.list && listing.list.items) {
+      return listing.list.items.map(function(item) { return item.elm; }).filter(Boolean);
+    }
+    return Array.prototype.slice.call(
+      document.querySelectorAll(
+        '#listing-notes-listing .listing-item, #listing-notes-listing .list-item, #listing-notes-listing .quarto-post'
+      )
+    );
+  }
+
   function getLatestDate(items) {
     for (var i = 0; i < items.length; i++) {
       var dateEl = items[i].querySelector('.listing-date') || items[i].querySelector('time');
@@ -67,10 +80,8 @@ listing:
     return '-';
   }
 
-  function init() {
-    var items = document.querySelectorAll(
-      '#listing-notes-listing .listing-item, #listing-notes-listing .list-item, #listing-notes-listing .quarto-post'
-    );
+  function updateStats() {
+    var items = resolveItems();
     var countEl = document.getElementById('notes-count');
     if (countEl) countEl.textContent = items.length || '0';
 
@@ -82,10 +93,31 @@ listing:
     if (emptyEl) emptyEl.style.display = items.length ? 'none' : 'block';
   }
 
+  function watchListing() {
+    var container = document.getElementById('listing-notes-listing');
+    if (!container || !window.MutationObserver) return;
+    var observer = new MutationObserver(function() { updateStats(); });
+    observer.observe(container, { childList: true, subtree: true });
+  }
+
+  function hookListingLoaded() {
+    var original = window['quarto-listing-loaded'];
+    window['quarto-listing-loaded'] = function() {
+      if (typeof original === 'function') original();
+      updateStats();
+    };
+  }
+
+  function init() {
+    hookListingLoaded();
+    updateStats();
+    watchListing();
+  }
+
   if (document.readyState === 'complete') {
-    setTimeout(init, 100);
+    setTimeout(init, 0);
   } else {
-    window.addEventListener('load', function() { setTimeout(init, 100); });
+    window.addEventListener('load', function() { setTimeout(init, 0); });
   }
 })();
 </script>
