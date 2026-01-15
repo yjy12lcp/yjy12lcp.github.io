@@ -289,13 +289,15 @@ Jan 15, 2026
     var listing =
       window['quarto-listings'] && window['quarto-listings']['listing-notes-listing'];
     if (listing && listing.list && listing.list.items) {
-      return listing.list.items.map(function(item) { return item.elm; }).filter(Boolean);
+      var items = listing.list.items.map(function(item) { return item.elm; }).filter(Boolean);
+      if (items.length) return items;
     }
-    return Array.prototype.slice.call(
-      document.querySelectorAll(
-        '#listing-notes-listing .listing-item, #listing-notes-listing .list-item, #listing-notes-listing .quarto-post'
-      )
-    );
+    var listContainer = document.querySelector('#listing-notes-listing .list');
+    if (listContainer) {
+      var gridItems = listContainer.querySelectorAll('[data-index], .listing-item, .list-item, .quarto-post');
+      if (gridItems.length) return Array.prototype.slice.call(gridItems);
+    }
+    return [];
   }
 
   function getLatestDate(items) {
@@ -305,7 +307,16 @@ Jan 15, 2026
         return dateEl.textContent.trim();
       }
       var dataDate = items[i].getAttribute('data-date') || items[i].getAttribute('data-listing-date-sort');
-      if (dataDate) return dataDate;
+      if (dataDate) {
+        var timestamp = parseInt(dataDate, 10);
+        if (!isNaN(timestamp)) {
+          var date = new Date(timestamp);
+          if (!isNaN(date.getTime())) {
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+          }
+        }
+        return dataDate;
+      }
     }
     return '-';
   }
