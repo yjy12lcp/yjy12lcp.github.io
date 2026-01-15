@@ -104,6 +104,19 @@ toc: false
     </div>
     <div class="card-arrow">→</div>
   </a>
+  <a href="notes/index.html" class="explore-card notes-card">
+    <div class="card-icon">📝</div>
+    <div class="card-content">
+      <h3>Notes</h3>
+      <p>每日课程学习记录与复盘，把知识拆成可复用的卡片</p>
+      <ul class="card-tags">
+        <li>课程要点</li>
+        <li>练习</li>
+        <li>反思</li>
+      </ul>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
 </div>
 ```
 

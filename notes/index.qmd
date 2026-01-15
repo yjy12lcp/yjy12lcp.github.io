@@ -1,0 +1,96 @@
+---
+title: "📝 学习笔记"
+subtitle: "每日课程学习与复盘"
+page-layout: full
+listing:
+  id: notes-listing
+  contents: "../posts/notes/**/index.qmd"
+  sort: "date desc"
+  categories: numbered
+  filter-ui: true
+  page-size: 20
+  type: grid
+  grid-columns: 2
+  fields: [title, description, date, categories]
+---
+
+```{=html}
+<section class="notes-hero">
+  <div class="notes-hero-content">
+    <span class="notes-kicker">Daily Learning Log</span>
+    <h2 class="notes-hero-title">课程学习笔记</h2>
+    <p class="notes-hero-subtitle">记录每天的课程重点、练习与反思，形成可复用的知识卡片。</p>
+    <div class="notes-badges">
+      <span class="notes-badge">课程要点</span>
+      <span class="notes-badge">练习复盘</span>
+      <span class="notes-badge">知识卡片</span>
+    </div>
+  </div>
+  <div class="notes-hero-stats">
+    <div class="notes-stat-card">
+      <span class="notes-stat-label">累计笔记</span>
+      <span class="notes-stat-value" id="notes-count">0</span>
+    </div>
+    <div class="notes-stat-card">
+      <span class="notes-stat-label">最近更新</span>
+      <span class="notes-stat-value" id="notes-latest-date">-</span>
+    </div>
+    <div class="notes-stat-card">
+      <span class="notes-stat-label">学习节奏</span>
+      <span class="notes-stat-value">Daily</span>
+    </div>
+  </div>
+</section>
+```
+
+```{=html}
+<div class="notes-guide">
+  <div class="notes-guide-card">
+    <h3>今日主题</h3>
+    <p>一句话概括课程目标与最终结论，方便回顾。</p>
+  </div>
+  <div class="notes-guide-card">
+    <h3>核心概念</h3>
+    <p>用 3-5 个要点梳理知识结构，形成思维框架。</p>
+  </div>
+  <div class="notes-guide-card">
+    <h3>练习复盘</h3>
+    <p>记录练习结果与卡点，并写下改进方案。</p>
+  </div>
+</div>
+```
+
+## 📘 All Notes
+
+按时间排序，可通过分类筛选课程主题或关键词。
+
+<div id="notes-empty" class="notes-empty">尚未发布笔记，今天就开始记录吧。</div>
+
+:::: {#notes-listing}
+::::
+
+```{=html}
+<script>
+(function() {
+  function init() {
+    var items = document.querySelectorAll('#listing-notes-listing .list .listing-item');
+    var countEl = document.getElementById('notes-count');
+    if (countEl) countEl.textContent = items.length || '0';
+
+    var latestEl = document.getElementById('notes-latest-date');
+    var dateEls = document.querySelectorAll('#listing-notes-listing .listing-date');
+    var latest = dateEls.length ? dateEls[0].textContent.trim() : '-';
+    if (latestEl) latestEl.textContent = latest || '-';
+
+    var emptyEl = document.getElementById('notes-empty');
+    if (emptyEl) emptyEl.style.display = items.length ? 'none' : 'block';
+  }
+
+  if (document.readyState === 'complete') {
+    setTimeout(init, 100);
+  } else {
+    window.addEventListener('load', function() { setTimeout(init, 100); });
+  }
+})();
+</script>
+```

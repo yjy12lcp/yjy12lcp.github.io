@@ -13,6 +13,8 @@ website:
         text: 论文阅读
       - href: projects/index.qmd
         text: 项目实现
+      - href: notes/index.qmd
+        text: 学习笔记
       - href: novel/index.qmd
         text: 小说
       - href: posts/index.qmd
