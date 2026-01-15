@@ -362,7 +362,7 @@ quarto preview
 
 ```bash
 git add .
-git commit -m "add: 新文章标题"
+git commit -m "add: rebuild"
 git push origin main
 ```
 

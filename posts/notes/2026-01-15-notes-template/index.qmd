@@ -1,26 +1,152 @@
 ---
-title: "学习笔记模板：Day 00"
-description: "三段式结构示例：今日主题、核心概念、练习复盘"
+title: "LMS"
+description: "Linear Regression 与 LMS（Least Mean Squares）算法"
 date: 2026-01-15
-categories: ["课程笔记", "模板"]
-tags: ["notes-template"]
+categories: ["课程笔记"]
+tags: ["LMS"]
 ---
 
-## 今日主题
+# 1. 问题设定（监督学习回归）
 
-用 1-2 句话概括当天课程的目标与结论，帮助未来的你快速回忆这节课“到底讲了什么、学完能做什么”。  
-（示例：今天学习了线性回归的损失函数与梯度下降更新规则，并能手推导参数更新公式。）
+## 1.1 训练数据
 
-## 核心概念
+给定训练集： $$
+\{(x^{(i)}, y^{(i)})\}_{i=1}^{n}
+$$
 
-用 3-5 条要点梳理关键定义、公式或逻辑链条，建立可复用的知识框架。  
-（示例：目标函数、梯度更新、学习率、收敛条件、过拟合迹象。）
+其中：$x^{(i)} \in \mathbb{R}^{d+1}$ 为输入特征向量， $y^{(i)} \in \mathbb{R}$ 为连续标签
 
-## 练习复盘
+引入偏置项： $$
+x_0^{(i)} = 1
+$$
 
-记录练习的结果与卡点，并写下改进方案。重点是“问题 → 原因 → 解决”。  
-（示例：手推导时忽略了矩阵维度；下次先写出维度表，再进行推导。）
+# 2. 线性回归假设函数
 
----
+## 2.1 Hypothesis
 
-> 使用建议：每天更新一条笔记，保持结构一致，便于横向对比与复盘。
+线性回归模型定义为： $$
+h_\theta(x) = \sum_{j=0}^{d} \theta_j x_j = \theta^T x
+$$
+
+其中： $\theta \in \mathbb{R}^{d+1}$ 为参数向量
+
+# 3. 代价函数（Least Squares）
+
+## 3.1 Cost Function
+
+采用最小二乘损失： $$
+J(\theta) = \frac{1}{2} \sum_{i=1}^{n}
+\left(h_\theta(x^{(i)}) - y^{(i)}\right)^2
+$$
+
+说明：系数 $\frac{1}{2}$ 仅用于简化求导
+
+这是一个凸的二次优化问题
+
+# 4. 梯度下降框架
+
+## 4.1 参数更新形式
+
+对每一个参数 $\theta_j$，梯度下降更新为： $$
+\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
+$$
+
+其中：$\alpha > 0$ 为学习率（learning rate）
+
+# 5. 核心推导：梯度计算
+
+## 5.1 单样本情形（关键推导）
+
+考虑只有一个训练样本 $(x, y)$，定义： $$
+J(\theta) = \frac{1}{2}(h_\theta(x) - y)^2
+$$
+
+对 $\theta_j$ 求偏导： $$
+\frac{\partial J}{\partial \theta_j}
+= \frac{\partial}{\partial \theta_j}
+\left[\frac{1}{2}(h_\theta(x)-y)^2\right]
+$$
+
+使用链式法则： $$
+= (h_\theta(x)-y)\frac{\partial}{\partial \theta_j}h_\theta(x)
+$$
+
+而： $$
+h_\theta(x) = \sum_{k=0}^{d}\theta_k x_k
+\quad \Rightarrow \quad
+\frac{\partial h_\theta(x)}{\partial \theta_j} = x_j
+$$
+
+因此得到： $$
+\boxed{
+\frac{\partial J}{\partial \theta_j}
+= (h_\theta(x)-y)x_j
+}
+$$
+
+## 5.2 单样本 LMS 更新（Widrow–Hoff）
+
+代入梯度下降更新公式： $$
+\theta_j := \theta_j - \alpha (h_\theta(x)-y)x_j
+$$
+
+等价写为： $$
+\boxed{
+\theta_j := \theta_j + \alpha (y-h_\theta(x))x_j
+}
+$$
+
+这即为 LMS（Least Mean Squares）更新规则。
+
+# 6. 推广到训练集（Batch LMS）
+
+## 6.1 梯度形式
+
+整体代价函数为： $$
+J(\theta) = \frac{1}{2}\sum_{i=1}^{n}
+(h_\theta(x^{(i)}) - y^{(i)})^2
+$$
+
+对 $\theta_j$ 求导： $$
+\frac{\partial J}{\partial \theta_j}
+= \sum_{i=1}^{n}
+(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}
+$$
+
+## 6.2 Batch Gradient Descent（CS229 式 1.1）
+
+梯度下降更新： $$
+\theta_j := \theta_j
+- \alpha \sum_{i=1}^{n}
+(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}
+$$
+
+等价写为： $$
+\boxed{
+\theta_j := \theta_j
++ \alpha \sum_{i=1}^{n}
+(y^{(i)} - h_\theta(x^{(i)}))x_j^{(i)}
+}
+\tag{1.1}
+$$
+
+# 7. 向量化表示（Vector Form）
+
+定义误差： $$
+e^{(i)} = y^{(i)} - h_\theta(x^{(i)})
+$$
+
+则整体更新为： $$
+\boxed{
+\theta := \theta + \alpha
+\sum_{i=1}^{n} e^{(i)} x^{(i)}
+}
+$$
+
+# 8. 本节结论总结
+
+-   LMS 算法本质：\
+    **对最小二乘代价函数的梯度下降**
+-   单样本 LMS $\Leftrightarrow$ 随机梯度下降（SGD）
+-   Batch LMS $\Leftrightarrow$ 批量梯度下降
+-   由于 $J(\theta)$ 为凸二次函数，存在唯一全局最优解
