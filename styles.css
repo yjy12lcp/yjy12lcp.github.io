@@ -1185,7 +1185,7 @@ input[type="search"]:focus {
 
 .explore-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-md);
   margin: var(--space-lg) 0;
 }
@@ -2395,39 +2395,6 @@ input[type="search"]:focus {
   color: var(--accent-cyan);
 }
 
-.notes-guide {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  margin: var(--space-lg) 0;
-}
-
-.notes-guide-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--space-md);
-  transition: all 0.3s ease;
-}
-
-.notes-guide-card h3 {
-  margin-top: 0;
-  margin-bottom: 0.6rem;
-  font-size: 1.1rem;
-}
-
-.notes-guide-card p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.notes-guide-card:hover {
-  border-color: var(--accent-cyan);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
-}
-
 .notes-empty {
   text-align: center;
   color: var(--text-muted);
@@ -2445,10 +2412,6 @@ input[type="search"]:focus {
 
   .notes-hero-stats {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }
-
-  .notes-guide {
-    grid-template-columns: 1fr;
   }
 }
 

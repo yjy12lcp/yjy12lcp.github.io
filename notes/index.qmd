@@ -43,23 +43,6 @@ listing:
 </section>
 ```
 
-```{=html}
-<div class="notes-guide">
-  <div class="notes-guide-card">
-    <h3>今日主题</h3>
-    <p>一句话概括课程目标与最终结论，方便回顾。</p>
-  </div>
-  <div class="notes-guide-card">
-    <h3>核心概念</h3>
-    <p>用 3-5 个要点梳理知识结构，形成思维框架。</p>
-  </div>
-  <div class="notes-guide-card">
-    <h3>练习复盘</h3>
-    <p>记录练习结果与卡点，并写下改进方案。</p>
-  </div>
-</div>
-```
-
 ## 📘 All Notes
 
 按时间排序，可通过分类筛选课程主题或关键词。
@@ -72,14 +55,27 @@ listing:
 ```{=html}
 <script>
 (function() {
+  function getLatestDate(items) {
+    for (var i = 0; i < items.length; i++) {
+      var dateEl = items[i].querySelector('.listing-date') || items[i].querySelector('time');
+      if (dateEl && dateEl.textContent.trim()) {
+        return dateEl.textContent.trim();
+      }
+      var dataDate = items[i].getAttribute('data-date') || items[i].getAttribute('data-listing-date-sort');
+      if (dataDate) return dataDate;
+    }
+    return '-';
+  }
+
   function init() {
-    var items = document.querySelectorAll('#listing-notes-listing .list .listing-item');
+    var items = document.querySelectorAll(
+      '#listing-notes-listing .listing-item, #listing-notes-listing .list-item, #listing-notes-listing .quarto-post'
+    );
     var countEl = document.getElementById('notes-count');
     if (countEl) countEl.textContent = items.length || '0';
 
     var latestEl = document.getElementById('notes-latest-date');
-    var dateEls = document.querySelectorAll('#listing-notes-listing .listing-date');
-    var latest = dateEls.length ? dateEls[0].textContent.trim() : '-';
+    var latest = getLatestDate(items);
     if (latestEl) latestEl.textContent = latest || '-';
 
     var emptyEl = document.getElementById('notes-empty');
