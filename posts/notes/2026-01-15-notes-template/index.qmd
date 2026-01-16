@@ -3,7 +3,7 @@ title: "LMS"
 description: "Linear Regression 与 LMS（Least Mean Squares）算法"
 date: 2026-01-15
 categories: ["Note"]
-tags: ["LMS"]
+tags: ["LMS", "Linear Regression"]
 ---
 
 # 1. 问题设定（监督学习回归）
@@ -19,6 +19,8 @@ $$
 引入偏置项： $$
 x_0^{(i)} = 1
 $$
+
+> 引入偏置项$x_0^{(i)}=1$是为了将仿射模型统一写成线性内积形式，使模型不再被强制通过原点，从而提升表达能力，并简化梯度与矩阵推导。
 
 # 2. 线性回归假设函数
 
@@ -39,7 +41,7 @@ J(\theta) = \frac{1}{2} \sum_{i=1}^{n}
 \left(h_\theta(x^{(i)}) - y^{(i)}\right)^2
 $$
 
-说明：系数 $\frac{1}{2}$ 仅用于简化求导
+> 系数 $\frac{1}{2}$ 仅用于简化求导
 
 这是一个凸的二次优化问题
 
@@ -113,7 +115,7 @@ $$
 (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}
 $$
 
-## 6.2 Batch Gradient Descent（CS229 式 1.1）
+## 6.2 Batch Gradient Descent
 
 梯度下降更新： $$
 \theta_j := \theta_j
@@ -127,7 +129,6 @@ $$
 + \alpha \sum_{i=1}^{n}
 (y^{(i)} - h_\theta(x^{(i)}))x_j^{(i)}
 }
-\tag{1.1}
 $$
 
 # 7. 向量化表示（Vector Form）
@@ -143,7 +144,17 @@ $$
 }
 $$
 
-# 8. 本节结论总结
+# 8.随机梯度下降Stochastic Gradient Descent(SGD)
+
+随机抽取一个样本 $i \sim {1,\dots,n}$
+
+\boxed{ \theta := \theta + \alpha \left(y^{(i)} - h_\theta(x^{(i)})\right)x^{(i)} } 
+
+这是用单一样本近似梯度
+
+> SGD 是在噪声梯度下，对同一目标函数执行的随机逼近算法；它的期望动力学等价于 Batch Gradient Descent
+
+# 9. 本节结论总结
 
 -   LMS 算法本质：\
     **对最小二乘代价函数的梯度下降**
