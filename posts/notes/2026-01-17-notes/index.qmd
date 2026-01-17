@@ -1,0 +1,223 @@
+---
+title: "Logistic Regression"
+description: "Logistic Regression"
+date: 2026-01-17
+categories: ["Note"]
+tags: ["Logistic Regression", "Classification", "MLE"]
+---
+
+# 2.1 Logistic Regression：从线性打分到概率分类
+
+## 2.1.0 任务设定与记号
+
+二分类：$y \in \{0,1\}$。给定训练集 $\{(x^{(i)}, y^{(i)})\}_{i=1}^n$，目标是学习一个模型来估计 $$ P(y=1 \mid x; \theta) $$
+
+约定 $x_0 = 1$，将截距项吸收到 $\theta^T x$ 中： $$ \theta^T x = \theta_0 + \sum_{j=1}^d \theta_j x_j $$
+
+## 2.1.1 模型选择：为什么用 Sigmoid
+
+### (1) 线性回归用于分类的根本问题
+
+若直接用线性回归预测 $y$，输出可能小于 0 或大于 1，与 $y\in\{0,1\}$ 的概率语义冲突。
+
+### (2) Logistic 回归假设函数
+
+定义 $$ h_\theta(x) = g(\theta^T x)=\frac{1}{1+e^{-\theta^T x}}, \quad g(z)=\frac{1}{1+e^{-z}} $$
+
+$g$ 称为 Logistic/Sigmoid 函数，且 $h_\theta(x)\in(0,1)$ 保证概率范围。
+
+> **概率建模的"最小改动"**
+>
+> -   仍然在做"线性模型"：先计算线性打分 $t=\theta^Tx$；
+> -   只是把 $t$ 通过一个单调、平滑、值域在 $(0,1)$ 的函数变成概率。
+> -   这使得"线性可分"的几何直觉仍成立：决策边界 $h_\theta(x)=0.5 \Leftrightarrow \theta^Tx=0$ 是一个超平面。
+
+## 2.1.2 Sigmoid 的导数：后续梯度的关键 $$ \boxed{ g'(z)=g(z)\bigl(1-g(z)\bigr). } $$
+
+> -   $g'(z)$ 能写回 $g(z)$ 本身，导致很多推导会出现漂亮的抵消；
+> -   这也是 Logistic 回归、GLM、乃至神经网络里 Sigmoid/Softmax 常见的原因之一（梯度结构简洁，数值实现稳定性也更易处理）。
+
+## 2.1.3 概率假设：把分类写成 Bernoulli 条件模型
+
+假设 $$ P(y=1\mid x;\theta)=h_\theta(x),\qquad P(y=0\mid x;\theta)=1-h_\theta(x) $$
+
+可合并写成（Bernoulli 形式） $$ p(y\mid x;\theta)=\bigl(h_\theta(x)\bigr)^y\bigl(1-h_\theta(x)\bigr)^{1-y} $$
+
+对独立样本，似然函数 $$ L(\theta)=\prod_{i=1}^n p\bigl(y^{(i)}\mid x^{(i)};\theta\bigr) = \prod_{i=1}^n \left(h_\theta(x^{(i)})\right)^{y^{(i)}} \left(1-h_\theta(x^{(i)})\right)^{1-y^{(i)}}$$
+
+## 2.1.4 对数似然
+
+取对数得到 $$ \boxed{ \ell(\theta)=\log L(\theta) =\sum_{i=1}^n \left[ y^{(i)}\log h_\theta(x^{(i)}) + (1-y^{(i)})\log\bigl(1-h_\theta(x^{(i)})\bigr) \right] } $$
+
+训练目标：**最大化** $\ell(\theta)$。
+
+> **为什么不是 MSE，而是对数似然**
+>
+> -   这里不是"随便挑个损失"，而是从"$y$ 在给定 $x$ 下服从 Bernoulli"这一生成机制出发；
+> -   最大化 $\ell(\theta)$ 等价于最小化负对数似然（也就是熟悉的二分类交叉熵/BCE）。
+
+## 2.1.5 梯度推导：得到随机梯度上升更新式
+
+用 **gradient ascent**： $$ \theta := \theta + \alpha \nabla_\theta \ell(\theta)$$
+
+> 注意是"+"，因为在最大化。
+
+先对单样本 $(x,y)$ 推导。令 $h = h_\theta(x)=g(\theta^Tx)$。则 $$ \ell(\theta)= y\log h + (1-y)\log(1-h). $$
+
+对 $\theta_j$ 求偏导：
+
+1.  **链式法则拆开**： $$ \frac{\partial \ell}{\partial \theta_j} = \left(\frac{y}{h}-\frac{1-y}{1-h}\right)\frac{\partial h}{\partial \theta_j}. $$
+
+2.  **计算** $\frac{\partial h}{\partial \theta_j}$：\
+    $h=g(\theta^Tx)$，所以 $$ \frac{\partial h}{\partial \theta_j}=g'(\theta^Tx)\cdot \frac{\partial (\theta^Tx)}{\partial \theta_j} = g(\theta^Tx)(1-g(\theta^Tx))\cdot x_j = h(1-h)x_j $$
+
+3.  **代回并化简（关键抵消）**： $$ \frac{\partial \ell}{\partial \theta_j} =\left(\frac{y}{h}-\frac{1-y}{1-h}\right)h(1-h)x_j =\bigl(y(1-h)-(1-y)h\bigr)x_j =(y-h)x_j$$
+
+因此得到随机梯度上升（SGA）更新： $$ \boxed{ \theta_j := \theta_j + \alpha\,(y^{(i)}-h_\theta(x^{(i)}))\,x^{(i)}_j } $$
+
+> **为什么梯度总是** $(y-\hat y)x$
+>
+> -   这是"指数族 + 规范链接函数（canonical link）"下的普遍结构（在 GLM 解释为什么这不是巧合）。
+> -   直观上：$(y-\hat y)$ 是"残差"，$x$ 是"方向"，所以更新是把参数沿着能减少残差的特征方向推动。
+> -   这也是深度学习里"最后一层 Logits + 交叉熵"反传出来的经典形状（对 Logit 的梯度就是 $\hat y-y$）。
+
+## 2.1.6 另一种等价视角：Logit + Logistic Loss（Remark 2.1.1）
+
+定义 Logistic Loss： $$ \ell_{\text{logistic}}(t,y)= y\log(1+\exp(-t))+(1-y)\log(1+\exp(t)) $$
+
+其中 $t=\theta^Tx$ 常被称为 **Logit**。
+
+指出负对数似然可写成 $$ -\ell(\theta) = \ell_{\text{logistic}}(\theta^Tx, y)$$
+
+并给出 $$ \frac{\partial \ell_{\text{logistic}}(t,y)}{\partial t} =\frac{1}{1+\exp(-t)}-y $$
+
+用链式法则即可回到 $$ \frac{\partial \ell}{\partial \theta_j}=(y-h_\theta(x))x_j $$
+
+> **Logit 的意义**
+>
+> -   $t=\theta^Tx$ 是"对数几率"的天然载体：在 GLM 中它对应自然参数；
+> -   把优化写成 $\ell_{\text{logistic}}(t,y)$ 的形式，直接对接神经网络：最后一层输出 Logits，损失模块是 Logistic Loss（BCE with Logits），数值更稳定。
+
+## 2.1.7 小结
+
+1.  $h_\theta(x)=\sigma(\theta^Tx)$ 将线性打分变成概率，边界 $\theta^Tx=0$。
+2.  Bernoulli 条件模型 $\Rightarrow$ 似然 $\Rightarrow$ 对数似然 。
+3.  Sigmoid 导数 $g'(z)=g(z)(1-g(z))$ 是梯度简化的关键。
+4.  单样本梯度 $\partial\ell/\partial\theta_j=(y-h)x_j$，得到 SGA 更新式。
+5.  负对数似然等价于 Logistic Loss（logit 视角），并可直接对接深度学习损失模块。
+
+## 2.1.8 对数似然的凸性：为什么 Logistic Regression 好优化
+
+**凸优化问题 = 无局部极小点 + 全局最优可达**。\
+这里说明 Logistic Regression 为什么天然满足这一点。
+
+### (1) 目标函数回顾
+
+我们最大化对数似然 $$
+\ell(\theta)
+= \sum_{i=1}^n \left[
+y^{(i)}\log h_\theta(x^{(i)}) + (1-y^{(i)})\log(1-h_\theta(x^{(i)}))
+\right]
+$$
+
+等价地，最小化负对数似然 $$
+J(\theta) = -\ell(\theta)
+= \sum_{i=1}^n \ell_{\text{logistic}}(\theta^Tx^{(i)}, y^{(i)})
+$$
+
+### (2) Hessian 的结构（关键结论）
+
+对单样本 $(x,y)$，已知 $$
+\frac{\partial \ell}{\partial \theta}
+= (y-h)x.
+$$
+
+再对 $\theta$ 求导，得到 Hessian（负对数似然的）： $$
+\nabla^2 J(\theta)
+= \sum_{i=1}^n h^{(i)}(1-h^{(i)})\, x^{(i)} (x^{(i)})^T
+$$
+
+其中 $h^{(i)} = h_\theta(x^{(i)})$
+
+### (3) 正定性与凸性
+
+对任意向量 $v\in\mathbb{R}^d$， $$
+v^T \nabla^2 J(\theta)\, v
+= \sum_{i=1}^n h^{(i)}(1-h^{(i)}) (v^T x^{(i)})^2 \ge 0
+$$
+
+原因： $h^{(i)}(1-h^{(i)}) \in (0, \tfrac14]$； $(v^T x^{(i)})^2 \ge 0$。
+
+因此： $\nabla^2 J(\theta)$ **半正定**； $J(\theta)$ 是 **凸函数**； 若 $\{x^{(i)}\}$ 张成整个空间，则 **严格凸 ⇒ 最优解唯一**。
+
+> 线性回归的 Hessian 是常数矩阵 $X^TX$；Logistic 回归的 Hessian **依赖于当前模型预测的不确定性**；当 $h\approx 0$ 或 $1$ 时，$h(1-h)\to 0$，曲率变小 ⇒ 梯度法变慢。
+
+这也是 logistic regression 在“几乎线性可分”数据上**训练变慢**的原因之一。
+
+## 2.1.9 几何与统计视角：Logistic Regression 在“拉开 Margin”
+
+### (1) 决策边界 vs 概率形状
+
+决策边界： $$
+h_\theta(x)=0.5 \;\Longleftrightarrow\; \theta^T x = 0,
+$$ 仍是一个超平面。
+
+但与感知机不同的是：\
+Logistic Regression **关心的是** $\theta^Tx$ 的大小，而不只是符号。
+
+### (2) Logistic Loss 对 Margin 的惩罚方式
+
+对单样本，令 $$
+t = \theta^Tx.
+$$
+
+-   若 $y=1$，损失为 $$
+    \ell(t,1)=\log(1+e^{-t});
+    $$
+-   若 $y=0$，损失为 $$
+    \ell(t,0)=\log(1+e^{t}).
+    $$
+
+性质：$t$ 与标签方向一致且 $|t|$ 越大，损失越小；错分时，损失近似 **线性增长**；正确但 Margin 小，仍会被惩罚。
+
+### (3) 与感知机的本质区别
+
+| 方法                | 是否关心 Margin 大小 | 是否概率化 |
+|---------------------|----------------------|------------|
+| 感知机              | 否（只看符号）       | 否         |
+| Logistic Regression | 是                   | 是         |
+
+感知机一旦分类正确就“停止更新”，\
+而 Logistic Regression 会继续**拉大 Margin**，只是梯度逐渐变小。
+
+> 与 SVM 的关系：
+>
+> Logistic Loss 是 **平滑的 Margin-based Loss**；SVM 的 Hinge Loss 是其“硬化版本”；Logistic 更适合概率输出与不确定性建模。
+
+### (4) 从统计角度看 Logit
+
+定义 log-odds（对数几率）： $$
+\log\frac{P(y=1\mid x)}{P(y=0\mid x)}
+= \log\frac{h_\theta(x)}{1-h_\theta(x)}
+= \theta^T x.
+$$
+
+> Logistic Regression **假设 log-odds 与特征线性相关**；这不是经验公式，而是指数族 + 规范链接函数的直接结果；后续 GLM、Softmax、多分类、甚至大模型最后一层都沿用这一思想。
+
+## 2.1.10 与现代深度学习的直接对应关系
+
+|                 | 深度学习中的对应          |
+|-----------------|---------------------------|
+| $\theta^Tx$     | 最后一层 linear 的 logits |
+| sigmoid         | 二分类激活                |
+| logistic loss   | BCE / BCEWithLogits       |
+| $(y-\hat y)x$   | 反向传播到线性层的梯度    |
+| Newton / Fisher | 二阶优化、K-FAC 的原型    |
+
+## 2.1 总结
+
+1.  Logistic Regression 是 **概率化的线性分类模型**；
+2.  目标函数来自 Bernoulli MLE，不是经验损失；
+3.  梯度结构 $(y-\hat y)x$ 源于指数族的规范形式；
+4.  负对数似然是凸的，优化性质良好；
+5.  模型在几何上隐式拉大 margin，在统计上建模 log-odds；
