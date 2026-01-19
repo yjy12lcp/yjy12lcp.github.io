@@ -1,7 +1,4 @@
 ---
-
-、、、、、、、、、、、、、、、、、、、、、
- ---
 title: "ImageNet Classification with Deep Convolutional Neural Networks"
 date: 2026-01-17
 categories: ["CNN", "Computer Vision"]
