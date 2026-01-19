@@ -1,0 +1,72 @@
+---
+title: "The Perceptron Algorithm"
+description: "The Perceptron Algorithm"
+date: 2026-01-19
+categories: ["Note"]
+tags: ["Perceptron", "Classification", "Linear Classifier"]
+---
+
+# 2.2 The Perceptron Algorithm
+
+## 2.2.0 历史与定位
+
+感知机是最早的线性分类算法之一（Rosenblatt, 1958），其重要性不在于性能，而在于：
+
+-   它揭示了**线性可分性**的概念；
+-   它是 logistic regression 的"非概率化版本"。
+
+## 2.2.1 模型形式
+
+定义硬阈值激活函数： $$ g(z)= \begin{cases} 1, & z \ge 0 \\ 0, & z < 0 \end{cases} $$
+
+感知机假设函数： $$ h_\theta(x)=g(\theta^T x) $$
+
+> 注意：这里的 $h_\theta(x)$ **不再是概率**，只是一个分类决策。
+
+## 2.2.2 学习规则（Perceptron Update Rule）
+
+对单个样本 $(x^{(i)},y^{(i)})$，更新为： $$ \boxed{ \theta := \theta + \alpha\,(y^{(i)} - h_\theta(x^{(i)}))\,x^{(i)} } $$
+
+-   若预测正确：$y=h_\theta(x)$ ⇒ 不更新
+-   若预测错误：沿着 $x^{(i)}$ 的方向修正参数
+
+## 2.2.3 与 Logistic Regression 的形式对比
+
+| 项目     | Perceptron | Logistic Regression |
+|----------|------------|---------------------|
+| 输出     | $\{0,1\}$  | $(0,1)$             |
+| 激活     | 硬阈值     | sigmoid             |
+| 是否概率 | ❌ 否      | ✅ 是               |
+| 是否可微 | ❌ 否      | ✅ 是               |
+| 是否 MLE | ❌ 否      | ✅ 是               |
+
+> **关键点**：Perceptron 的更新公式看起来与 logistic regression 极其相似，但这是"形式相似"，而不是"理论等价"。
+
+## 2.2.4 从 margin 的角度理解 Perceptron
+
+用 $y^*\in\{\pm1\}$，定义 margin： $$ m = y^*(\theta^T x) $$
+
+Perceptron 的隐式 loss 可以写为： $$ \ell_{\text{perc}}(m)=\max(0,-m) $$
+
+性质：
+
+-   只要 $m>0$（分对），loss = 0
+-   不关心 margin 的大小
+-   不会继续"拉大 margin"
+
+## 2.2.5 Perceptron 的理论性质（局限性）
+
+**Perceptron Convergence Theorem**：
+
+-   若数据线性可分，算法在有限步内收敛；
+-   若不可分，算法可能永不停止振荡。
+
+> **深层理解**：
+>
+> -   感知机没有概率模型 ⇒ 没有似然 ⇒ 没有"最优解"的概念；
+> -   它只是一个"错误修正机制"，不是统计估计器。
+
+## 2.2.6 一句话总结
+
+> Perceptron 是 logistic regression 的"硬阈值极限版本"：\
+> 它共享相同的线性判别结构，但放弃了概率语义、可微性与统计最优性。

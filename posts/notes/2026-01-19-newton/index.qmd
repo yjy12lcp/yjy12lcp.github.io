@@ -1,0 +1,142 @@
+---
+title: "Newton's Method and Fisher Scoring"
+description: "Newton's Method and Fisher Scoring"
+date: 2026-01-19
+categories: ["Note"]
+tags: ["Newton Method", "Fisher Scoring", "IRLS", "Optimization", "Second Order"]
+---
+
+# 2.4 Newton's Method and Fisher Scoring
+
+## 2.4.0 本节定位
+
+在 2.1–2.3 中，我们已经得到：
+
+-   明确的对数似然函数 $\ell(\theta)$；
+-   明确的一阶梯度结构（预测分布 − 真实分布）。
+
+本节的目标是：\
+**利用二阶信息（Hessian），更高效地最大化** $\ell(\theta)$。
+
+## 2.4.1 Newton 方法：从一维到向量形式
+
+### (1) 一维 Newton-Raphson 回顾
+
+对一维函数 $f(\theta)$，求解 $f'(\theta)=0$ 的 Newton 更新为： $$ \theta^{(t+1)} = \theta^{(t)} - \frac{f'(\theta^{(t)})}{f''(\theta^{(t)})}. $$
+
+### (2) 多维 Newton 更新（极值问题）
+
+在多维情形，对目标函数 $\ell(\theta)$，Newton 更新写成： $$ \boxed{ \theta^{(t+1)} = \theta^{(t)} - H(\theta^{(t)})^{-1}\,\nabla_\theta \ell(\theta^{(t)}) }$$
+
+其中：
+
+-   $\nabla_\theta \ell(\theta)$：梯度（列向量）
+-   $H(\theta)=\nabla_\theta^2 \ell(\theta)$：Hessian 矩阵
+
+注意：\
+若改为最小化 $J(\theta)=-\ell(\theta)$，更新号会相反。
+
+## 2.4.2 Logistic Regression 的 Hessian 结构
+
+以下以二分类 logistic regression 为例。
+
+### (1) 梯度回顾
+
+对全数据： $$ \nabla_\theta \ell(\theta) = \sum_{i=1}^m (y^{(i)}-h^{(i)})\,x^{(i)}, \quad h^{(i)}=h_\theta(x^{(i)})$$
+
+### (2) Hessian 的显式形式
+
+再对 $\theta$ 求导，可得： $$ H(\theta) = - \sum_{i=1}^m h^{(i)}\bigl(1-h^{(i)}\bigr)\,x^{(i)}(x^{(i)})^T$$
+
+关键性质：
+
+-   $H(\theta)$ **负半定**；
+-   因此 $-\ell(\theta)$ 是凸函数。
+
+### (3) 矩阵形式（板书级）
+
+设设计矩阵 $X\in\mathbb{R}^{m\times d}$，\
+定义对角矩阵 $$ R=\mathrm{diag}\bigl(h^{(1)}(1-h^{(1)}),\dots,h^{(m)}(1-h^{(m)})\bigr). $$
+
+则： $$ \boxed{ H(\theta) = - X^T R X}$$
+
+## 2.4.3 Newton 更新在 Logistic Regression 中的具体形态
+
+将梯度与 Hessian 代入 (2.10)： $$ \theta^{(t+1)} = \theta^{(t)} + (X^T R X)^{-1} X^T (y-h)$$
+
+> 注意这里是 "+"，因为我们在最大化 $\ell(\theta)$。
+
+### Newton 在"做什么"
+
+-   Newton 方法不是"走梯度方向"；
+-   而是：\
+    **在当前位置，用二次函数近似** $\ell(\theta)$，直接跳到该二次近似的极大点。
+
+因此：
+
+-   若二次近似好 ⇒ 收敛极快；
+-   若离最优点很远 ⇒ 可能不稳定。
+
+## 2.4.4 Fisher Scoring：为什么在统计里更常见
+
+### (1) Hessian 的问题
+
+在 logistic / softmax 中：
+
+-   Hessian $H(\theta)$ 依赖于当前样本预测 $h^{(i)}$；
+-   在数值上，可能病态或不稳定。
+
+### (2) Fisher 信息矩阵
+
+定义 Fisher 信息： $$ \mathcal I(\theta) = \mathbb E\bigl[-\nabla_\theta^2 \ell(\theta)\bigr] $$
+
+对 logistic regression，有： $$ \boxed{ \mathcal I(\theta) = X^T R X } $$
+
+即：
+
+> **Fisher 信息 = 负 Hessian 的期望**
+
+### (3) Fisher Scoring 更新
+
+用 Fisher 信息替代 Hessian： $$ \boxed{ \theta^{(t+1)} = \theta^{(t)} + \mathcal I(\theta^{(t)})^{-1}\,\nabla_\theta \ell(\theta^{(t)})}  $$
+
+在 logistic regression 中：
+
+-   Fisher Scoring 与 Newton **形式完全一致**；
+-   在更一般的 GLM 中，两者略有差异。
+
+## 2.4.5 IRLS：加权最小二乘的等价形式
+
+Newton / Fisher 更新**等价于** 求解一个加权最小二乘问题： $$ \theta^{(t+1)} = \arg\min_\theta \bigl\| R^{1/2}(z - X\theta) \bigr\|_2^2$$
+
+其中： $$ z = X\theta^{(t)} + R^{-1}(y-h) $$
+
+该算法称为 **IRLS（Iteratively Reweighted Least Squares）**
+
+> -   每一步都在"重新构造一个线性回归问题"；
+> -   权重 $R$ 反映当前样本的不确定性；
+> -   不确定性大（$h\approx 0.5$） ⇒ 权重大。
+
+## 2.4.6 与一阶方法（GD / SGD）的对比
+
+| 方法             | 使用信息 | 收敛速度 | 单步代价 |
+|------------------|----------|----------|----------|
+| Gradient Descent | 一阶     | 慢       | 低       |
+| Newton / Fisher  | 一、二阶 | 很快     | 高       |
+| SGD              | 随机一阶 | 中       | 极低     |
+
+### 为什么深度学习不用 Newton
+
+-   Hessian 维度 $\sim 10^6\!-\!10^9$，不可逆；
+-   存储与计算代价不可接受；
+-   但思想仍在延续：
+    -   自然梯度
+    -   K-FAC
+    -   二阶近似预条件
+
+## 2.4.7 一句话总结
+
+> Newton / Fisher Scoring 是在对数似然空间中\
+> 利用二阶几何结构进行"最陡峭、最自然"的参数更新；\
+> 在 Logistic / Softmax 回归中，它们等价于 IRLS，\
+> 也是现代二阶优化与自然梯度方法的理论起点。

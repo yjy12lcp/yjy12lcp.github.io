@@ -1,0 +1,122 @@
+---
+title: "Multi-class Classification & Softmax"
+description: "Multi-class Classification and Softmax"
+date: 2026-01-19
+categories: ["Note"]
+tags: ["Softmax", "Multi-class", "Classification", "MLE", "Cross Entropy"]
+---
+
+# 2.3 Multi-class Classification and Softmax
+
+## 2.3.0 问题设定
+
+当类别数 $k>2$ 时： $$
+y \in \{1,2,\dots,k\}
+$$
+
+目标是建模： $$
+P(y=j\mid x;\theta), \quad j=1,\dots,k.
+$$
+
+## 2.3.1 为什么不能“直接线性回归到 k 维”
+
+若直接设： $$
+\hat y = W x
+$$
+
+问题：
+
+-   输出不保证非负
+-   输出不保证和为 1
+-   不满足概率公理
+
+## 2.3.2 Multinomial 分布：不可回避的概率背景
+
+由于 $y$ 只能取 $k$ 个互斥类别：
+
+> **条件分布** $y\mid x$ 必须是 Multinomial（Categorical）分布
+
+其形式为： $$
+P(y=j\mid x)=\pi_j(x),
+\quad
+\sum_{j=1}^k \pi_j(x)=1.
+$$
+
+## 2.3.3 指数族视角：softmax 的必然性
+
+Multinomial 分布是指数族，其自然参数为： $$
+\eta_j = \log \pi_j - \log \pi_k \quad (j=1,\dots,k-1)
+$$
+
+选择规范链接函数： $$
+\eta_j = \theta_j^T x
+$$
+
+可解得： $$
+\boxed{
+P(y=j\mid x;\theta)
+=
+\frac{\exp(\theta_j^T x)}{\sum_{l=1}^k \exp(\theta_l^T x)}
+}
+$$
+
+这就是 **softmax 函数**。
+
+> 和 sigmoid 的关系：sigmoid = softmax 在 $k=2$ 时的特例
+
+## 2.3.4 Softmax 的 logit 解释
+
+定义第 $j$ 类的 logit： $$
+z_j = \theta_j^T x
+$$
+
+softmax 做的事是：
+
+-   将 logits 转为概率
+-   logits 的**相对大小**决定类别概率
+-   加同一个常数不改变结果（平移不变性）
+
+## 2.3.5 多分类对数似然与交叉熵损失
+
+单样本对数似然： $$
+\log p(y\mid x;\theta)
+=
+\sum_{j=1}^k \mathbb{I}\{y=j\}\log P(y=j\mid x;\theta)
+$$
+
+其中$\mathbb{I}$为指示函数
+
+负对数似然（softmax loss / categorical cross-entropy）： $$
+\ell_{\text{CE}}(x,y)
+=
+- \log\frac{\exp(z_y)}{\sum_{j=1}^k \exp(z_j)}
+$$
+
+> 这不是“定义一个 loss”，而是 **Multinomial MLE 的直接结果**。
+
+## 2.3.6 梯度结构（统一性非常重要）
+
+对 logits： $$
+\frac{\partial \ell}{\partial z_j}
+=
+P(y=j\mid x;\theta) - \mathbb{I}\{y=j\}
+$$
+
+这意味着：
+
+-   **预测概率 − 真实分布**
+-   与 logistic regression 的 $(\hat y - y)$ 完全一致
+
+> 这就是为什么：二分类 BCE，多分类 softmax CE，神经网络最后一层反向传播都共享同一梯度模板
+
+## 2.3.7 几何解释：多个线性判别函数
+
+-   每一类对应一个超平面打分
+-   softmax 比较的是这些打分的相对大小
+-   决策边界是多个超平面的分段组合
+
+## 2.3.8 一句话总结
+
+> Softmax 回归是 logistic regression 在 Multinomial 分布下的唯一自然推广：\
+> logits 仍然是线性证据，交叉熵仍然是负对数似然，\
+> 改变的只是类别数，而不是理论结构。
