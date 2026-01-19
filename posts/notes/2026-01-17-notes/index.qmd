@@ -32,7 +32,7 @@ $g$ 称为 Logistic/Sigmoid 函数，且 $h_\theta(x)\in(0,1)$ 保证概率范�
 > -   只是把 $t$ 通过一个单调、平滑、值域在 $(0,1)$ 的函数变成概率。
 > -   这使得"线性可分"的几何直觉仍成立：决策边界 $h_\theta(x)=0.5 \Leftrightarrow \theta^Tx=0$ 是一个超平面。
 
-## 2.1.2 Sigmoid 的导数：后续梯度的关键 $$ \boxed{ g'(z)=g(z)\bigl(1-g(z)\bigr). } $$
+2.1.2 Sigmoid 的导数：后续梯度的关键 $$ \boxed{ g'(z)=g(z)\bigl(1-g(z)\bigr). } $$
 
 > -   $g'(z)$ 能写回 $g(z)$ 本身，导致很多推导会出现漂亮的抵消；
 > -   这也是 Logistic 回归、GLM、乃至神经网络里 Sigmoid/Softmax 常见的原因之一（梯度结构简洁，数值实现稳定性也更易处理）。
