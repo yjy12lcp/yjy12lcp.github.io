@@ -6,7 +6,7 @@ categories: ["Note"]
 tags: ["GLM", "Exponential Family", "Link Function", "Canonical Link"]
 ---
 
-# 3  广义线性模型（Generalized Linear Models）
+# 3 广义线性模型（Generalized Linear Models）
 
 ## 3.2 构造广义线性模型
 
